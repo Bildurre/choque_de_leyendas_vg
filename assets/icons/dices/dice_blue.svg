@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 160 180" stroke-linejoin="round" stroke="black" stroke-width="4%">
+  
+  <polygon 
+    points="100,180 30,140 30,60 100,100" 
+    fill="#408cfd"
+  />
+
+  <polygon 
+    points="100,180 100,100 170,60 170,140" 
+    fill="#408cfd"
+  />
+
+  <polygon 
+    points="100,100 30,60 100,20 170,60" 
+    fill="#408cfd"
+  />
+</svg>

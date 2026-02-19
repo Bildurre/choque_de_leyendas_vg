@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- Flecha medieval estilizada con borde negro -->
+  <!-- Silueta negra (borde) -->
+  <path fill="#0a0a0a" d="
+    M 4,24 L 21,4 L 21,14 L 36,14 L 36,8 L 44,8 L 44,40 L 36,40 L 36,34 L 21,34 L 21,44 Z
+  "/>
+  <!-- Relleno rojo interior -->
+  <path fill="#f15959" d="
+    M 8,24 L 22,8 L 22,16 L 37,16 L 37,11 L 41,11 L 41,37 L 37,37 L 37,32 L 22,32 L 22,40 Z
+  "/>
+  <!-- Reflejo claro en la punta -->
+  <path fill="#f58080" opacity="0.5" d="
+    M 14,24 L 22,14 L 22,16 L 17,24 Z
+  "/>
+  <!-- Sombra oscura en la base -->
+  <path fill="#c62121" opacity="0.4" d="
+    M 37,32 L 41,32 L 41,37 L 37,37 Z
+    M 37,11 L 41,11 L 41,16 L 37,16 Z
+  "/>
+</svg>
