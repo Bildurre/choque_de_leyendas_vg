@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Sword cursor - pointer/hand state with teal glow -->
+  <defs>
+    <filter id="teal-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+      <feFlood flood-color="#4db6ac" flood-opacity="0.7" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#teal-glow)">
+    <!-- Blade -->
+    <path d="M4 2 L8 2 L20 14 L18 16 L4 2 Z" fill="#e0f2f1" stroke="#4db6ac" stroke-width="0.5"/>
+    <!-- Blade highlight -->
+    <path d="M4 2 L8 2 L14 8 L4 2 Z" fill="#ffffff" opacity="0.6"/>
+    <!-- Guard (crossguard) -->
+    <path d="M17 13 L22 11 L23 12 L18 17 L17 16 Z" fill="#4db6ac" stroke="#00897b" stroke-width="0.5"/>
+    <path d="M20 14 L15 19 L16 20 L21 15 Z" fill="#4db6ac" stroke="#00897b" stroke-width="0.5"/>
+    <!-- Handle/Grip -->
+    <path d="M18 17 L23 22 L22 23 L17 18 Z" fill="#92400e" stroke="#78350f" stroke-width="0.5"/>
+    <!-- Pommel -->
+    <circle cx="23.5" cy="23.5" r="2" fill="#4db6ac" stroke="#00897b" stroke-width="0.5"/>
+  </g>
+</svg>

@@ -10,6 +10,10 @@ config/name="Choque de Leyendas"
 run/main_scene="res://screens/main_menu/main_menu_desktop.tscn"
 config/features=PackedStringArray("4.3")
 
+[autoload]
+
+CursorManager="*res://autoloads/cursor_manager.gd"
+
 [display]
 
 window/size/viewport_width=1920
