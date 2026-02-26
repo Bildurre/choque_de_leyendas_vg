@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
@@ -9,6 +9,44 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="7_users"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="8_settings"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/home.jpeg" id="9_bg"]
+[ext_resource type="Script" path="res://ui/components/top_bar/hex_profile_button.gd" id="10_hex"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/user.svg" id="11_user"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="12_coins"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="13_gem"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.05, 0.05, 0.05, 0.5)
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.08)
+content_margin_left = 24.0
+content_margin_top = 0.0
+content_margin_right = 24.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpfill"]
+bg_color = Color(0.478, 0.392, 0.784, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbg"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvlbadge"]
+bg_color = Color(0.478, 0.392, 0.784, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -48,10 +86,125 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopSection" type="MarginContainer" parent="Layout"]
+[node name="TopSection" type="PanelContainer" parent="Layout"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="TopBar" type="HBoxContainer" parent="Layout/TopSection"]
+layout_mode = 2
+
+[node name="ProfileArea" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="ProfileButton" type="Control" parent="Layout/TopSection/TopBar/ProfileArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(52, 52)
+size_flags_vertical = 4
+script = ExtResource("10_hex")
+
+[node name="UserIcon" type="TextureRect" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_user")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LevelBadge" type="PanelContainer" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 56.0
+offset_bottom = 52.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvlbadge")
+
+[node name="LevelLabel" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton/LevelBadge"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UserInfo" type="VBoxContainer" parent="Layout/TopSection/TopBar/ProfileArea"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Username" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Jugador#1234"
+
+[node name="XPBar" type="ProgressBar" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
+layout_mode = 2
+custom_minimum_size = Vector2(140, 6)
+max_value = 120.0
+value = 46.0
+show_percentage = false
+tooltip_text = "46 / 120 XP"
+theme_override_styles/fill = SubResource("StyleBoxFlat_xpfill")
+theme_override_styles/background = SubResource("StyleBoxFlat_xpbg")
+
+[node name="Spacer" type="Control" parent="Layout/TopSection/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Currencies" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="CoinsContainer" type="HBoxContainer" parent="Layout/TopSection/TopBar/Currencies"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CoinIcon" type="TextureRect" parent="Layout/TopSection/TopBar/Currencies/CoinsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 24)
+size_flags_vertical = 4
+texture = ExtResource("12_coins")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.94, 0.76, 0.22, 1)
+
+[node name="CoinAmount" type="Label" parent="Layout/TopSection/TopBar/Currencies/CoinsContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+text = "1,250"
+
+[node name="GemsContainer" type="HBoxContainer" parent="Layout/TopSection/TopBar/Currencies"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="GemIcon" type="TextureRect" parent="Layout/TopSection/TopBar/Currencies/GemsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(24, 24)
+size_flags_vertical = 4
+texture = ExtResource("13_gem")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.224, 0.6, 0.804, 1)
+
+[node name="GemAmount" type="Label" parent="Layout/TopSection/TopBar/Currencies/GemsContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+text = "85"
 
 [node name="MiddleSection" type="MarginContainer" parent="Layout"]
 layout_mode = 2
