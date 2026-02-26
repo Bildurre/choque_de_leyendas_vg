@@ -18,7 +18,6 @@ window/stretch/mode="canvas_items"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/ui.csv")
 locale/locale_filter_mode=1
 locale/locale_filter=PackedStringArray("en", "es")
 
