@@ -66,10 +66,11 @@ func _create_base_style(bg: Color, radius: int, pad: int) -> StyleBoxFlat:
 	style.content_margin_top = pad
 	style.content_margin_right = pad
 	style.content_margin_bottom = pad
-	style.border_width_left = 3
-	style.border_width_top = 3
-	style.border_width_right = 3
-	style.border_width_bottom = 3
+	style.border_width_left = 4
+	style.border_width_top = 4
+	style.border_width_right = 4
+	style.border_width_bottom = 4
+	style.corner_detail = 20
 	style.anti_aliasing = true
 	style.anti_aliasing_size = 2.0
 	return style
