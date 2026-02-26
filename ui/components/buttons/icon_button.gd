@@ -88,11 +88,11 @@ func _on_hover_entered() -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	_tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.25)
+	_tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.5)
 
 
 func _on_hover_exited() -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	_tween.tween_property(self, "scale", Vector2.ONE, 0.25)
+	_tween.tween_property(self, "scale", Vector2.ONE, 0.5)
