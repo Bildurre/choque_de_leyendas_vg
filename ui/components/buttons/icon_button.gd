@@ -8,10 +8,10 @@ extends Button
 @export var hover_color: Color = GameColors.COLOR_TEAL
 
 ## Tamanio total del boton (diametro).
-@export var button_diameter: float = 64.0
+@export var button_diameter: float = 96.0
 
 ## Padding interior entre el borde del boton y el icono.
-@export var icon_padding: float = 16.0
+@export var icon_padding: float = 24.0
 
 var _tween: Tween
 var _normal_style: StyleBoxFlat
@@ -57,9 +57,9 @@ func _setup_styles() -> void:
 	_hover_style.content_margin_top = pad
 	_hover_style.content_margin_right = pad
 	_hover_style.content_margin_bottom = pad
-	_hover_style.shadow_size = 8
-	_hover_style.shadow_color = Color(hover_color, 0.35)
-	_hover_style.shadow_offset = Vector2(0, 2)
+	_hover_style.shadow_size = 4
+	_hover_style.shadow_color = Color(hover_color, 0.2)
+	_hover_style.shadow_offset = Vector2(0, 0)
 
 	# Estado presionado: color intermedio mas oscuro
 	_pressed_style = StyleBoxFlat.new()
