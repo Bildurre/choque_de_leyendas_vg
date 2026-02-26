@@ -34,48 +34,18 @@ func _setup_styles() -> void:
 	var pad := int(icon_padding)
 
 	# Estado normal: fondo gris oscuro + borde sutil
-	_normal_style = StyleBoxFlat.new()
-	_normal_style.bg_color = GameColors.COLOR_BG_DARK_TERTIARY
-	_normal_style.set_corner_radius_all(radius)
-	_normal_style.content_margin_left = pad
-	_normal_style.content_margin_top = pad
-	_normal_style.content_margin_right = pad
-	_normal_style.content_margin_bottom = pad
-	_normal_style.border_width_left = 2
-	_normal_style.border_width_top = 2
-	_normal_style.border_width_right = 2
-	_normal_style.border_width_bottom = 2
+	_normal_style = _create_base_style(GameColors.COLOR_BG_DARK_TERTIARY, radius, pad)
 	_normal_style.border_color = Color(GameColors.COLOR_TEXT_LIGHT, 0.15)
 
 	# Estado hover: color intermedio + borde mas visible + sombra
-	_hover_style = StyleBoxFlat.new()
-	_hover_style.bg_color = hover_color
-	_hover_style.set_corner_radius_all(radius)
-	_hover_style.content_margin_left = pad
-	_hover_style.content_margin_top = pad
-	_hover_style.content_margin_right = pad
-	_hover_style.content_margin_bottom = pad
-	_hover_style.border_width_left = 2
-	_hover_style.border_width_top = 2
-	_hover_style.border_width_right = 2
-	_hover_style.border_width_bottom = 2
+	_hover_style = _create_base_style(hover_color, radius, pad)
 	_hover_style.border_color = Color(GameColors.COLOR_TEXT_LIGHT, 0.3)
 	_hover_style.shadow_size = 4
 	_hover_style.shadow_color = Color(hover_color, 0.2)
 	_hover_style.shadow_offset = Vector2(0, 0)
 
 	# Estado presionado: color intermedio mas oscuro + borde
-	_pressed_style = StyleBoxFlat.new()
-	_pressed_style.bg_color = hover_color.darkened(0.2)
-	_pressed_style.set_corner_radius_all(radius)
-	_pressed_style.content_margin_left = pad
-	_pressed_style.content_margin_top = pad
-	_pressed_style.content_margin_right = pad
-	_pressed_style.content_margin_bottom = pad
-	_pressed_style.border_width_left = 2
-	_pressed_style.border_width_top = 2
-	_pressed_style.border_width_right = 2
-	_pressed_style.border_width_bottom = 2
+	_pressed_style = _create_base_style(hover_color.darkened(0.2), radius, pad)
 	_pressed_style.border_color = Color(GameColors.COLOR_TEXT_LIGHT, 0.2)
 
 	# Aplicar estilos
@@ -86,3 +56,20 @@ func _setup_styles() -> void:
 
 	# Cursor de mano
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+
+func _create_base_style(bg: Color, radius: int, pad: int) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = bg
+	style.set_corner_radius_all(radius)
+	style.content_margin_left = pad
+	style.content_margin_top = pad
+	style.content_margin_right = pad
+	style.content_margin_bottom = pad
+	style.border_width_left = 3
+	style.border_width_top = 3
+	style.border_width_right = 3
+	style.border_width_bottom = 3
+	style.anti_aliasing = true
+	style.anti_aliasing_size = 2.0
+	return style
