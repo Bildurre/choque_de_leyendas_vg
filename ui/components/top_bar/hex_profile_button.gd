@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var center := size / 2.0
-	var radius := min(size.x, size.y) / 2.0 - border_width
+	var radius: float = minf(size.x, size.y) / 2.0 - border_width
 	var points := _hex_points(center, radius)
 
 	# Fondo
