@@ -12,6 +12,7 @@ config/features=PackedStringArray("4.3")
 
 [autoload]
 
+TranslationLoader="*res://autoloads/translation_loader.gd"
 CursorManager="*res://autoloads/cursor_manager.gd"
 
 [display]
@@ -26,7 +27,6 @@ theme/custom="res://assets/theme/game_theme.tres"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/ui_es.tres", "res://translations/ui_en.tres")
 locale/locale_filter_mode=1
 locale/locale_filter=PackedStringArray("en", "es")
 locale/test="es"
