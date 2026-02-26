@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="12_coins"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="13_gem"]
 [ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="14_mcb"]
+[ext_resource type="Script" path="res://ui/containers/max_width_container.gd" id="15_mwc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -42,9 +43,9 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
 bg_color = Color(0.0, 0.0, 0.0, 0.35)
-content_margin_left = 32.0
-content_margin_top = 16.0
-content_margin_right = 32.0
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
 content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvlbadge"]
@@ -230,6 +231,8 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.7
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("15_mwc")
+max_content_width = 1200
 
 [node name="CardRow" type="HBoxContainer" parent="Layout/MiddleSection"]
 layout_mode = 2
@@ -262,7 +265,7 @@ accent_color = Color(0.251, 0.549, 0.992, 1)
 
 [node name="BottomSection" type="Control" parent="Layout"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 120)
 
 [node name="BottomBg" type="ColorRect" parent="Layout/BottomSection"]
 layout_mode = 1
@@ -281,10 +284,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -8.0
-offset_bottom = -8.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="ShopButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
