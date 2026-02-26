@@ -33,20 +33,17 @@ func _setup_styles() -> void:
 	var radius := int(button_diameter / 2.0)
 	var pad := int(icon_padding)
 
-	# Estado normal: fondo gris oscuro + borde sutil
+	# Estado normal: fondo gris oscuro
 	_normal_style = _create_base_style(GameColors.COLOR_BG_DARK_TERTIARY, radius, pad)
-	_normal_style.border_color = Color(GameColors.COLOR_TEXT_LIGHT, 0.15)
 
-	# Estado hover: color intermedio + borde mas visible + sombra
+	# Estado hover: color intermedio + sombra
 	_hover_style = _create_base_style(hover_color, radius, pad)
-	_hover_style.border_color = Color(GameColors.COLOR_TEXT_LIGHT, 0.3)
 	_hover_style.shadow_size = 4
 	_hover_style.shadow_color = Color(hover_color, 0.2)
 	_hover_style.shadow_offset = Vector2(0, 0)
 
-	# Estado presionado: color intermedio mas oscuro + borde
+	# Estado presionado: color intermedio mas oscuro
 	_pressed_style = _create_base_style(hover_color.darkened(0.2), radius, pad)
-	_pressed_style.border_color = Color(GameColors.COLOR_TEXT_LIGHT, 0.2)
 
 	# Aplicar estilos
 	add_theme_stylebox_override("normal", _normal_style)
@@ -66,11 +63,4 @@ func _create_base_style(bg: Color, radius: int, pad: int) -> StyleBoxFlat:
 	style.content_margin_top = pad
 	style.content_margin_right = pad
 	style.content_margin_bottom = pad
-	style.border_width_left = 4
-	style.border_width_top = 4
-	style.border_width_right = 4
-	style.border_width_bottom = 4
-	style.corner_detail = 20
-	style.anti_aliasing = true
-	style.anti_aliasing_size = 2.0
 	return style
