@@ -1,5 +1,5 @@
 ## Boton redondo reutilizable con icono. Muestra un icono centrado sobre un fondo
-## circular oscuro. En hover: escala x1.05, cambia color de fondo y muestra sombra.
+## circular oscuro. En hover: cambia color de fondo y muestra sombra.
 ## Uso: asignar icon (Texture2D) y tooltip_text desde el editor o .tscn.
 class_name IconButton
 extends Button
@@ -13,7 +13,6 @@ extends Button
 ## Padding interior entre el borde del boton y el icono.
 @export var icon_padding: float = 24.0
 
-var _tween: Tween
 var _normal_style: StyleBoxFlat
 var _hover_style: StyleBoxFlat
 var _pressed_style: StyleBoxFlat
@@ -28,12 +27,6 @@ func _ready() -> void:
 	text = ""
 
 	_setup_styles()
-
-	resized.connect(_update_pivot)
-	_update_pivot()
-
-	mouse_entered.connect(_on_hover_entered)
-	mouse_exited.connect(_on_hover_exited)
 
 
 func _setup_styles() -> void:
@@ -78,21 +71,3 @@ func _setup_styles() -> void:
 
 	# Cursor de mano
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-
-
-func _update_pivot() -> void:
-	pivot_offset = size / 2.0
-
-
-func _on_hover_entered() -> void:
-	if _tween:
-		_tween.kill()
-	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	_tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.15)
-
-
-func _on_hover_exited() -> void:
-	if _tween:
-		_tween.kill()
-	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	_tween.tween_property(self, "scale", Vector2.ONE, 0.15)
