@@ -20,10 +20,16 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom="res://assets/theme/game_theme.tres"
+
 [internationalization]
 
+locale/translations=PackedStringArray("res://translations/ui_es.tres", "res://translations/ui_en.tres")
 locale/locale_filter_mode=1
 locale/locale_filter=PackedStringArray("en", "es")
+locale/test="es"
 
 [rendering]
 

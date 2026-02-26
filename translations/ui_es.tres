@@ -1,0 +1,14 @@
+[gd_resource type="Translation" format=3]
+
+[resource]
+locale = "es"
+messages = {
+"MAIN_MENU_PLAY": "Jugar",
+"MAIN_MENU_COLLECTION": "Colección",
+"MAIN_MENU_SHOP": "Tienda",
+"MAIN_MENU_MISSIONS": "Misiones",
+"MAIN_MENU_SOCIAL": "Social",
+"MAIN_MENU_FRIENDS": "Amigos",
+"MAIN_MENU_SETTINGS": "Ajustes",
+"MAIN_MENU_PROFILE": "Perfil"
+}

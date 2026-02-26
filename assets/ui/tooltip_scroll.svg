@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="80" viewBox="0 0 256 80">
+  <!-- Left scroll roll -->
+  <ellipse cx="22" cy="40" rx="18" ry="38" fill="#7a5c1e"/>
+  <ellipse cx="22" cy="40" rx="16" ry="36" fill="#9e7a2e"/>
+  <ellipse cx="23" cy="40" rx="12" ry="32" fill="#b8913a"/>
+  <ellipse cx="24" cy="40" rx="6" ry="26" fill="#9e7a2e"/>
+
+  <!-- Right scroll roll -->
+  <ellipse cx="234" cy="40" rx="20" ry="40" fill="#7a5c1e"/>
+  <ellipse cx="234" cy="40" rx="18" ry="38" fill="#9e7a2e"/>
+  <ellipse cx="233" cy="40" rx="14" ry="34" fill="#b8913a"/>
+  <ellipse cx="232" cy="40" rx="7" ry="28" fill="#9e7a2e"/>
+
+  <!-- Main parchment body -->
+  <rect x="28" y="4" width="200" height="72" fill="#c4a050"/>
+
+  <!-- Inner parchment surface -->
+  <rect x="34" y="8" width="188" height="64" rx="2" fill="#dbb860"/>
+  <rect x="36" y="10" width="184" height="60" rx="1" fill="#e8c878"/>
+
+  <!-- Edge shadows -->
+  <rect x="34" y="8" width="188" height="2" fill="#b8913a" opacity="0.3"/>
+  <rect x="34" y="68" width="188" height="2" fill="#b8913a" opacity="0.3"/>
+</svg>
