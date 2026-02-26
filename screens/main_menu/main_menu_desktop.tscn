@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/messages_square.svg" id="6_msg"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="7_users"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="8_settings"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/home.jpeg" id="9_bg"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -26,6 +27,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.102, 0.102, 0.102, 1)
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bg")
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(0.55, 0.55, 0.55, 0.35)
 
 [node name="Layout" type="VBoxContainer" parent="."]
 layout_mode = 1
