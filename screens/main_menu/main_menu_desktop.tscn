@@ -155,7 +155,7 @@ text = "Jugador#1234"
 
 [node name="XPBar" type="ProgressBar" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
 layout_mode = 2
-custom_minimum_size = Vector2(180, 8)
+custom_minimum_size = Vector2(180, 14)
 max_value = 120.0
 value = 46.0
 show_percentage = false
