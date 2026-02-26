@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/user.svg" id="11_user"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="12_coins"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="13_gem"]
+[ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="14_mcb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -222,6 +223,37 @@ text = "85"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.7
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CardRow" type="HBoxContainer" parent="Layout/MiddleSection"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 40
+
+[node name="CollectionButton" type="Button" parent="Layout/MiddleSection/CardRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Colección"
+script = ExtResource("14_mcb")
+accent_color = Color(0.161, 0.671, 0.373, 1)
+
+[node name="PlayButton" type="Button" parent="Layout/MiddleSection/CardRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Jugar"
+script = ExtResource("14_mcb")
+accent_color = Color(0.945, 0.349, 0.349, 1)
+
+[node name="DecksButton" type="Button" parent="Layout/MiddleSection/CardRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Mazos"
+script = ExtResource("14_mcb")
+accent_color = Color(0.251, 0.549, 0.992, 1)
 
 [node name="BottomSection" type="Control" parent="Layout"]
 layout_mode = 2
