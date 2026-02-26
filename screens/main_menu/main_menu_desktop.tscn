@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
+[ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
+[ext_resource type="Script" path="res://ui/components/buttons/settings_button.gd" id="3_sb"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/store.svg" id="4_store"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/scroll_text.svg" id="5_scroll"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/messages_square.svg" id="6_msg"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="7_users"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="8_settings"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.102, 0.102, 0.102, 1)
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopSection" type="MarginContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="MiddleSection" type="MarginContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
+
+[node name="BottomSection" type="Control" parent="Layout"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+
+[node name="CenterButtons" type="HBoxContainer" parent="Layout/BottomSection"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ShopButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "MAIN_MENU_SHOP"
+icon = ExtResource("4_store")
+script = ExtResource("2_ib")
+hover_color = Color(0.945, 0.459, 0.227, 1)
+
+[node name="MissionsButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "MAIN_MENU_MISSIONS"
+icon = ExtResource("5_scroll")
+script = ExtResource("2_ib")
+hover_color = Color(0.478, 0.392, 0.784, 1)
+
+[node name="SocialButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "MAIN_MENU_SOCIAL"
+icon = ExtResource("6_msg")
+script = ExtResource("2_ib")
+hover_color = Color(0.224, 0.6, 0.804, 1)
+
+[node name="FriendsButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "MAIN_MENU_FRIENDS"
+icon = ExtResource("7_users")
+script = ExtResource("2_ib")
+hover_color = Color(0.192, 0.635, 0.557, 1)
+
+[node name="SettingsButton" type="TextureButton" parent="Layout/BottomSection"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -16.0
+offset_right = -24.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "MAIN_MENU_SETTINGS"
+texture_normal = ExtResource("8_settings")
+stretch_mode = 5
+script = ExtResource("3_sb")
