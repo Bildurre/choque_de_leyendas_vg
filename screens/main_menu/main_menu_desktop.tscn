@@ -14,39 +14,41 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="12_coins"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="13_gem"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
-bg_color = Color(0.05, 0.05, 0.05, 0.5)
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 0.08)
-content_margin_left = 24.0
-content_margin_top = 0.0
-content_margin_right = 24.0
-content_margin_bottom = 0.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpfill"]
 bg_color = Color(0.478, 0.392, 0.784, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbg"]
 bg_color = Color(0.15, 0.15, 0.15, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvlbadge"]
 bg_color = Color(0.478, 0.392, 0.784, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-content_margin_left = 4.0
-content_margin_top = 1.0
-content_margin_right = 4.0
-content_margin_bottom = 1.0
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -86,11 +88,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopSection" type="PanelContainer" parent="Layout"]
+[node name="TopSection" type="MarginContainer" parent="Layout"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
-theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
 
 [node name="TopBar" type="HBoxContainer" parent="Layout/TopSection"]
 layout_mode = 2
@@ -98,11 +102,11 @@ layout_mode = 2
 [node name="ProfileArea" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 12
+theme_override_constants/separation = 14
 
 [node name="ProfileButton" type="Control" parent="Layout/TopSection/TopBar/ProfileArea"]
 layout_mode = 2
-custom_minimum_size = Vector2(52, 52)
+custom_minimum_size = Vector2(68, 68)
 size_flags_vertical = 4
 script = ExtResource("10_hex")
 
@@ -111,10 +115,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = -12.0
-offset_bottom = -12.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_user")
@@ -125,16 +129,16 @@ mouse_filter = 2
 [node name="LevelBadge" type="PanelContainer" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 56.0
-offset_bottom = 52.0
+offset_left = 42.0
+offset_top = 44.0
+offset_right = 72.0
+offset_bottom = 68.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lvlbadge")
 
 [node name="LevelLabel" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton/LevelBadge"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "12"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -146,12 +150,12 @@ theme_override_constants/separation = 4
 
 [node name="Username" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 18
 text = "Jugador#1234"
 
 [node name="XPBar" type="ProgressBar" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
 layout_mode = 2
-custom_minimum_size = Vector2(140, 6)
+custom_minimum_size = Vector2(180, 8)
 max_value = 120.0
 value = 46.0
 show_percentage = false
@@ -166,44 +170,52 @@ size_flags_horizontal = 3
 [node name="Currencies" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 12
 
-[node name="CoinsContainer" type="HBoxContainer" parent="Layout/TopSection/TopBar/Currencies"]
+[node name="CoinBox" type="PanelContainer" parent="Layout/TopSection/TopBar/Currencies"]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
 
-[node name="CoinIcon" type="TextureRect" parent="Layout/TopSection/TopBar/Currencies/CoinsContainer"]
+[node name="CoinsContainer" type="HBoxContainer" parent="Layout/TopSection/TopBar/Currencies/CoinBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(24, 24)
+theme_override_constants/separation = 8
+
+[node name="CoinIcon" type="TextureRect" parent="Layout/TopSection/TopBar/Currencies/CoinBox/CoinsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
 size_flags_vertical = 4
 texture = ExtResource("12_coins")
 expand_mode = 1
 stretch_mode = 5
 modulate = Color(0.94, 0.76, 0.22, 1)
 
-[node name="CoinAmount" type="Label" parent="Layout/TopSection/TopBar/Currencies/CoinsContainer"]
+[node name="CoinAmount" type="Label" parent="Layout/TopSection/TopBar/Currencies/CoinBox/CoinsContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 17
 text = "1,250"
 
-[node name="GemsContainer" type="HBoxContainer" parent="Layout/TopSection/TopBar/Currencies"]
+[node name="GemBox" type="PanelContainer" parent="Layout/TopSection/TopBar/Currencies"]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
 
-[node name="GemIcon" type="TextureRect" parent="Layout/TopSection/TopBar/Currencies/GemsContainer"]
+[node name="GemsContainer" type="HBoxContainer" parent="Layout/TopSection/TopBar/Currencies/GemBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(24, 24)
+theme_override_constants/separation = 8
+
+[node name="GemIcon" type="TextureRect" parent="Layout/TopSection/TopBar/Currencies/GemBox/GemsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
 size_flags_vertical = 4
 texture = ExtResource("13_gem")
 expand_mode = 1
 stretch_mode = 5
 modulate = Color(0.224, 0.6, 0.804, 1)
 
-[node name="GemAmount" type="Label" parent="Layout/TopSection/TopBar/Currencies/GemsContainer"]
+[node name="GemAmount" type="Label" parent="Layout/TopSection/TopBar/Currencies/GemBox/GemsContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 17
 text = "85"
 
 [node name="MiddleSection" type="MarginContainer" parent="Layout"]
