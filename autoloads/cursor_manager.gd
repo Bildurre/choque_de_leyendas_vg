@@ -5,8 +5,8 @@ extends Node
 const CURSOR_DEFAULT := preload("res://assets/cursors/sword_default.svg")
 const CURSOR_POINTER := preload("res://assets/cursors/sword_pointer.svg")
 
-## Hotspot en la punta de la espada (esquina superior izquierda).
-const HOTSPOT := Vector2(4, 2)
+## Hotspot en la punta de la espada (esquina superior izquierda tras el flip).
+const HOTSPOT := Vector2(1, 1)
 
 
 func _ready() -> void:

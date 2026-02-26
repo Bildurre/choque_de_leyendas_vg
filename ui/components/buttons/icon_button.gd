@@ -5,7 +5,7 @@ class_name IconButton
 extends Button
 
 ## Color de fondo en hover (usar colores intermedios de GameColors).
-@export var hover_color: Color = GameColors.COLOR_TEAL
+@export var hover_color: Color = GameColors.COLOR_PURPLE
 
 ## Tamanio total del boton (diametro).
 @export var button_diameter: float = 96.0
