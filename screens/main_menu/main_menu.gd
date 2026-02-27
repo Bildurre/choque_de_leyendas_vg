@@ -2,6 +2,10 @@
 ## Conecta las senales de los botones de la barra inferior y gestiona la navegacion.
 extends Control
 
+const SETTINGS_MODAL_PATH := "res://ui/components/modals/settings_modal.gd"
+
+var _settings_modal: SettingsModal
+
 
 func _ready() -> void:
 	_connect_button("CollectionButton", _on_collection_pressed)
@@ -12,6 +16,12 @@ func _ready() -> void:
 	_connect_button("SocialButton", _on_social_pressed)
 	_connect_button("FriendsButton", _on_friends_pressed)
 	_connect_button("SettingsButton", _on_settings_pressed)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and not _settings_modal:
+		_open_settings()
+		get_viewport().set_input_as_handled()
 
 
 func _connect_button(button_name: String, callback: Callable) -> void:
@@ -49,4 +59,16 @@ func _on_friends_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	print("[MainMenu] Settings pressed")
+	_open_settings()
+
+
+func _open_settings() -> void:
+	if _settings_modal:
+		return
+	_settings_modal = SettingsModal.new()
+	_settings_modal.closed.connect(_on_settings_closed)
+	add_child(_settings_modal)
+
+
+func _on_settings_closed() -> void:
+	_settings_modal = null
