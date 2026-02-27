@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=3]
+[gd_resource type="Theme" load_steps=3 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/ui/tooltip_scroll.svg" id="1_scroll"]
+[ext_resource type="FontFile" path="res://assets/fonts/italianno/Italianno-Regular.ttf" id="2_italianno"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tooltip"]
 texture = ExtResource("1_scroll")
@@ -16,4 +17,5 @@ content_margin_bottom = 16.0
 [resource]
 TooltipPanel/styles/panel = SubResource("StyleBoxTexture_tooltip")
 TooltipLabel/colors/font_color = Color(0.15, 0.08, 0.02, 1)
+TooltipLabel/fonts/font = ExtResource("2_italianno")
 TooltipLabel/font_sizes/font_size = 14

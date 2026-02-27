@@ -3,6 +3,8 @@
 ## Conecta las senales de los botones y gestiona la navegacion.
 extends Control
 
+const LOGO_PATH := "res://assets/logos/%s/logo_full_light.svg"
+
 
 func _ready() -> void:
 	_connect_button("CollectionButton", _on_collection_pressed)
@@ -12,6 +14,12 @@ func _ready() -> void:
 	_connect_button("MissionsButton", _on_missions_pressed)
 	_connect_button("SocialButton", _on_social_pressed)
 	_connect_button("FriendsButton", _on_friends_pressed)
+	_update_logo()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED:
+		_update_logo()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -24,6 +32,13 @@ func _connect_button(button_name: String, callback: Callable) -> void:
 	var button := get_node_or_null("%" + button_name) as BaseButton
 	if button:
 		button.pressed.connect(callback)
+
+
+func _update_logo() -> void:
+	var locale := TranslationServer.get_locale()
+	var tex := load(LOGO_PATH % locale)
+	if tex:
+		%Logo.texture = tex
 
 
 func _on_collection_pressed() -> void:

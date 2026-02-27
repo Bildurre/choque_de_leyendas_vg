@@ -86,17 +86,22 @@ custom_minimum_size = Vector2(0, 8)
 
 [node name="Separator" type="HSeparator" parent="Layout/ContentArea/ContentColumn"]
 layout_mode = 2
-theme_override_colors/separator_color = Color(0.478, 0.392, 0.784, 0.5)
+theme_override_colors/separator_color = Color(0.478, 0.392, 0.784, 0.7)
 theme_override_constants/separation = 0
 
 [node name="SepSpacer" type="Control" parent="Layout/ContentArea/ContentColumn"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 16)
 
-[node name="LanguageRow" type="HBoxContainer" parent="Layout/ContentArea/ContentColumn"]
+[node name="OptionsBlock" type="MarginContainer" parent="Layout/ContentArea/ContentColumn"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="LanguageRow" type="HBoxContainer" parent="Layout/ContentArea/ContentColumn/OptionsBlock"]
 layout_mode = 2
 
-[node name="LanguageLabel" type="Label" parent="Layout/ContentArea/ContentColumn/LanguageRow"]
+[node name="LanguageLabel" type="Label" parent="Layout/ContentArea/ContentColumn/OptionsBlock/LanguageRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("6_font")
@@ -107,7 +112,7 @@ theme_override_constants/outline_size = 6
 text = "SETTINGS_LANGUAGE"
 vertical_alignment = 1
 
-[node name="LanguageSelector" type="OptionButton" parent="Layout/ContentArea/ContentColumn/LanguageRow"]
+[node name="LanguageSelector" type="OptionButton" parent="Layout/ContentArea/ContentColumn/OptionsBlock/LanguageRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
