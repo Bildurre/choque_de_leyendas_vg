@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="12_coins"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="13_gem"]
 [ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="14_mcb"]
+[ext_resource type="Texture2D" path="res://assets/logos/logo_full_es_light.svg" id="15_logo"]
+[ext_resource type="Shader" path="res://ui/shaders/outline.gdshader" id="16_oshader"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -57,6 +59,11 @@ content_margin_left = 5.0
 content_margin_top = 2.0
 content_margin_right = 5.0
 content_margin_bottom = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
+shader = ExtResource("16_oshader")
+shader_parameter/outline_color = Color(0.05, 0.05, 0.1, 0.9)
+shader_parameter/outline_width = 2.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -231,12 +238,34 @@ size_flags_stretch_ratio = 0.7
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="CardRow" type="HBoxContainer" parent="Layout/MiddleSection"]
+[node name="ContentColumn" type="VBoxContainer" parent="Layout/MiddleSection"]
 layout_mode = 2
+
+[node name="LogoContainer" type="Control" parent="Layout/MiddleSection/ContentColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Logo" type="TextureRect" parent="Layout/MiddleSection/ContentColumn/LogoContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_logo")
+expand_mode = 1
+stretch_mode = 5
+material = SubResource("ShaderMaterial_outline")
+
+[node name="CardRow" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
 alignment = 1
 theme_override_constants/separation = 40
 
-[node name="CollectionButton" type="Button" parent="Layout/MiddleSection/CardRow"]
+[node name="CollectionButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -244,7 +273,7 @@ text = "Colección"
 script = ExtResource("14_mcb")
 accent_color = Color(0.161, 0.671, 0.373, 1)
 
-[node name="PlayButton" type="Button" parent="Layout/MiddleSection/CardRow"]
+[node name="PlayButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -252,7 +281,7 @@ text = "Jugar"
 script = ExtResource("14_mcb")
 accent_color = Color(0.945, 0.349, 0.349, 1)
 
-[node name="DecksButton" type="Button" parent="Layout/MiddleSection/CardRow"]
+[node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
