@@ -16,6 +16,6 @@ content_margin_bottom = 16.0
 
 [resource]
 TooltipPanel/styles/panel = SubResource("StyleBoxTexture_tooltip")
-TooltipLabel/colors/font_color = Color(0.15, 0.08, 0.02, 1)
+TooltipLabel/colors/font_color = Color(0, 0, 0, 1)
 TooltipLabel/fonts/font = ExtResource("2_italianno")
-TooltipLabel/font_sizes/font_size = 14
+TooltipLabel/font_sizes/font_size = 20
