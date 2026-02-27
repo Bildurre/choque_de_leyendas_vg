@@ -49,7 +49,7 @@ grow_vertical = 2
 texture = ExtResource("9_bg")
 expand_mode = 1
 stretch_mode = 6
-modulate = Color(0.45, 0.45, 0.45, 0.25)
+modulate = Color(0.3, 0.3, 0.3, 0.15)
 
 [node name="Layout" type="VBoxContainer" parent="."]
 layout_mode = 1
