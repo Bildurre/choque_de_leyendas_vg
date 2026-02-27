@@ -5,6 +5,7 @@ class_name SettingsModal
 extends CanvasLayer
 
 const BLUR_SHADER_PATH := "res://ui/shaders/blur_overlay.gdshader"
+const GAME_SETTINGS_SCENE := "res://screens/settings/game_settings_desktop.tscn"
 const FADE_DURATION := 0.25
 const BUTTON_SEPARATION := 12
 
@@ -14,7 +15,6 @@ signal closed
 var _backdrop: ColorRect
 var _panel: PanelContainer
 var _tween: Tween
-var _subpage: Node
 
 ## Nombres de los botones del menu.
 var _button_labels := ["Cambiar", "Juego", "Gráficos", "Audio", "Volver", "Salir"]
@@ -110,25 +110,13 @@ func _on_button_pressed(label_text: String) -> void:
 		"Cambiar":
 			print("[SettingsModal] Cambiar pressed")
 		"Juego":
-			_open_subpage(GameSettingsPage.new())
+			get_tree().change_scene_to_file(GAME_SETTINGS_SCENE)
 		"Volver":
 			_close()
 		"Salir":
 			get_tree().quit()
 		_:
 			print("[SettingsModal] %s pressed" % label_text)
-
-
-func _open_subpage(page: CanvasLayer) -> void:
-	if _subpage:
-		return
-	_subpage = page
-	_subpage.closed.connect(_on_subpage_closed)
-	add_child(_subpage)
-
-
-func _on_subpage_closed() -> void:
-	_subpage = null
 
 
 func _on_backdrop_input(event: InputEvent) -> void:
