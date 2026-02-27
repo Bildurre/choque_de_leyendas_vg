@@ -120,70 +120,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
 [node name="TopBar" type="HBoxContainer" parent="Layout/TopSection"]
 layout_mode = 2
 
-[node name="ProfileArea" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 14
-
-[node name="ProfileButton" type="Control" parent="Layout/TopSection/TopBar/ProfileArea"]
-layout_mode = 2
-custom_minimum_size = Vector2(68, 68)
-size_flags_vertical = 4
-script = ExtResource("10_hex")
-
-[node name="UserIcon" type="TextureRect" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = -15.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_user")
-expand_mode = 1
-stretch_mode = 5
-mouse_filter = 2
-
-[node name="LevelBadge" type="PanelContainer" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 42.0
-offset_top = 44.0
-offset_right = 72.0
-offset_bottom = 68.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lvlbadge")
-
-[node name="LevelLabel" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton/LevelBadge"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "12"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UserInfo" type="VBoxContainer" parent="Layout/TopSection/TopBar/ProfileArea"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 4
-
-[node name="Username" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Jugador#1234"
-
-[node name="XPBar" type="ProgressBar" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
-layout_mode = 2
-custom_minimum_size = Vector2(180, 14)
-max_value = 120.0
-value = 46.0
-show_percentage = false
-tooltip_text = "46 / 120 XP"
-theme_override_styles/fill = SubResource("StyleBoxFlat_xpfill")
-theme_override_styles/background = SubResource("StyleBoxFlat_xpbg")
-
 [node name="Spacer" type="Control" parent="Layout/TopSection/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -238,6 +174,72 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 17
 text = "85"
+
+[node name="ProfileArea" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="UserInfo" type="VBoxContainer" parent="Layout/TopSection/TopBar/ProfileArea"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Username" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Jugador#1234"
+horizontal_alignment = 2
+
+[node name="XPBar" type="ProgressBar" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 14)
+size_flags_horizontal = 10
+max_value = 120.0
+value = 46.0
+show_percentage = false
+tooltip_text = "46 / 120 XP"
+theme_override_styles/fill = SubResource("StyleBoxFlat_xpfill")
+theme_override_styles/background = SubResource("StyleBoxFlat_xpbg")
+
+[node name="ProfileButton" type="Control" parent="Layout/TopSection/TopBar/ProfileArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(68, 68)
+size_flags_vertical = 4
+script = ExtResource("10_hex")
+
+[node name="UserIcon" type="TextureRect" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_user")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LevelBadge" type="PanelContainer" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 42.0
+offset_top = 44.0
+offset_right = 72.0
+offset_bottom = 68.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvlbadge")
+
+[node name="LevelLabel" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton/LevelBadge"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MiddleSection" type="MarginContainer" parent="Layout"]
 layout_mode = 2
