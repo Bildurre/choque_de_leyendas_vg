@@ -1,10 +1,14 @@
-## Botón rectangular tipo tarjeta con borde de color y texto IMFellEnglish.
+## Botón rectangular tipo tarjeta con imagen de fondo en blanco y negro tintada.
 ## Mantiene aspect ratio 5:7 (ancho:alto) de forma responsiva.
+## En hover solo se hace zoom en la imagen de fondo.
 class_name MenuCardButton
 extends Button
 
-## Color del borde y del outline del texto.
+## Color del borde, tinte de la imagen y outline del texto.
 @export var accent_color: Color = GameColors.COLOR_GREEN
+
+## Textura de fondo (se muestra en escala de grises con el tinte del accent_color).
+@export var background_texture: Texture2D
 
 ## Grosor del borde.
 @export var border_width: int = 3
@@ -14,6 +18,13 @@ extends Button
 
 const ASPECT_RATIO := 5.0 / 7.0
 const FONT_PATH := "res://assets/fonts/imfellenglish/IMFellEnglish-Regular.ttf"
+const SHADER_PATH := "res://ui/shaders/grayscale_tint.gdshader"
+const ZOOM_NORMAL := 1.0
+const ZOOM_HOVER := 1.08
+
+var _bg: TextureRect
+var _shader_mat: ShaderMaterial
+var _tween: Tween
 
 
 func _ready() -> void:
@@ -31,26 +42,46 @@ func _ready() -> void:
 	add_theme_constant_override("outline_size", 8)
 
 	_setup_styles()
+	_setup_background()
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	resized.connect(_update_aspect_ratio)
-	call_deferred("_update_aspect_ratio")
+	resized.connect(_on_resized)
+	mouse_entered.connect(_on_hover_entered)
+	mouse_exited.connect(_on_hover_exited)
+	call_deferred("_on_resized")
 
 
 func _setup_styles() -> void:
-	var bg := Color(0.08, 0.08, 0.08, 0.6)
+	var style := _make_style(Color(0.08, 0.08, 0.08, 0.5), accent_color, border_width)
 
-	var normal := _make_style(bg, accent_color, border_width)
-
-	var hover := _make_style(Color(0.12, 0.12, 0.12, 0.7), accent_color.lightened(0.2), border_width + 1)
-	hover.shadow_size = 8
-	hover.shadow_color = Color(accent_color, 0.3)
-
-	var pressed := _make_style(Color(0.05, 0.05, 0.05, 0.8), accent_color.darkened(0.2), border_width)
-
-	add_theme_stylebox_override("normal", normal)
-	add_theme_stylebox_override("hover", hover)
-	add_theme_stylebox_override("pressed", pressed)
+	add_theme_stylebox_override("normal", style)
+	add_theme_stylebox_override("hover", style)
+	add_theme_stylebox_override("pressed", style)
 	add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+
+
+func _setup_background() -> void:
+	if not background_texture:
+		return
+
+	var shader := load(SHADER_PATH) as Shader
+	if not shader:
+		return
+
+	_shader_mat = ShaderMaterial.new()
+	_shader_mat.shader = shader
+	_shader_mat.set_shader_parameter("tint_color", accent_color)
+	_shader_mat.set_shader_parameter("corner_radius", float(corner_radius))
+	_shader_mat.set_shader_parameter("zoom", ZOOM_NORMAL)
+
+	_bg = TextureRect.new()
+	_bg.texture = background_texture
+	_bg.expand_mode = 1  # IGNORE_SIZE
+	_bg.stretch_mode = 6  # KEEP_ASPECT_COVERED
+	_bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_bg.material = _shader_mat
+	_bg.show_behind_parent = true
+	_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_bg)
 
 
 func _make_style(bg: Color, border: Color, bw: int) -> StyleBoxFlat:
@@ -62,7 +93,36 @@ func _make_style(bg: Color, border: Color, bw: int) -> StyleBoxFlat:
 	return s
 
 
-func _update_aspect_ratio() -> void:
+func _on_resized() -> void:
 	var target_w := size.y * ASPECT_RATIO
 	if abs(custom_minimum_size.x - target_w) > 1.0:
 		custom_minimum_size.x = target_w
+
+	if _shader_mat:
+		_shader_mat.set_shader_parameter("rect_size", size)
+
+
+func _on_hover_entered() -> void:
+	if not _shader_mat:
+		return
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_tween.tween_method(_set_zoom, _get_zoom(), ZOOM_HOVER, 0.3)
+
+
+func _on_hover_exited() -> void:
+	if not _shader_mat:
+		return
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_tween.tween_method(_set_zoom, _get_zoom(), ZOOM_NORMAL, 0.3)
+
+
+func _set_zoom(value: float) -> void:
+	_shader_mat.set_shader_parameter("zoom", value)
+
+
+func _get_zoom() -> float:
+	return _shader_mat.get_shader_parameter("zoom")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="14_mcb"]
 [ext_resource type="Texture2D" path="res://assets/logos/logo_full_es_light.svg" id="15_logo"]
 [ext_resource type="Shader" path="res://ui/shaders/outline.gdshader" id="16_oshader"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/collection.jpeg" id="17_col_img"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="18_play_img"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="19_decks_img"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -278,6 +281,7 @@ size_flags_vertical = 3
 text = "Colección"
 script = ExtResource("14_mcb")
 accent_color = Color(0.161, 0.671, 0.373, 1)
+background_texture = ExtResource("17_col_img")
 
 [node name="PlayButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
@@ -286,6 +290,7 @@ size_flags_vertical = 3
 text = "Jugar"
 script = ExtResource("14_mcb")
 accent_color = Color(0.945, 0.349, 0.349, 1)
+background_texture = ExtResource("18_play_img")
 
 [node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
@@ -294,6 +299,7 @@ size_flags_vertical = 3
 text = "Mazos"
 script = ExtResource("14_mcb")
 accent_color = Color(0.251, 0.549, 0.992, 1)
+background_texture = ExtResource("19_decks_img")
 
 [node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
