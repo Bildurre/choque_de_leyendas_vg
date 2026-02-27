@@ -35,7 +35,7 @@ func _build_ui() -> void:
 	if shader:
 		var mat := ShaderMaterial.new()
 		mat.shader = shader
-		mat.set_shader_parameter("blur_amount", 3.0)
+		mat.set_shader_parameter("blur_amount", 1.0)
 		mat.set_shader_parameter("overlay_color", Color(0.0, 0.0, 0.0, 0.7))
 		_backdrop.material = mat
 	else:
@@ -94,14 +94,9 @@ func _build_ui() -> void:
 	# --- Botones ---
 	for label_text in _button_labels:
 		if label_text == "Salir":
-			var sep := HSeparator.new()
-			sep.add_theme_stylebox_override("separator", StyleBoxLine.new())
-			var sep_style := sep.get_theme_stylebox("separator") as StyleBoxLine
-			sep_style.color = Color(0.3, 0.3, 0.3, 0.5)
-			sep_style.thickness = 1
-			sep_style.content_margin_top = 8.0
-			sep_style.content_margin_bottom = 4.0
-			vbox.add_child(sep)
+			var spacer_salir := Control.new()
+			spacer_salir.custom_minimum_size.y = 12.0
+			vbox.add_child(spacer_salir)
 		var btn := Button.new()
 		btn.text = label_text
 		btn.script = load("res://ui/components/buttons/menu_option_button.gd")
