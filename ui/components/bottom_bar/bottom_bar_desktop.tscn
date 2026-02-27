@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://ui/components/bottom_bar/bottom_bar.gd" id="1_bb"]
+[ext_resource type="Script" path="res://ui/components/buttons/settings_button.gd" id="2_sb"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="3_settings"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="4_coins"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="5_gem"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottombar"]
+bg_color = Color(0.0, 0.0, 0.0, 0.0)
+content_margin_left = 32.0
+content_margin_top = 8.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+
+[node name="BottomBar" type="PanelContainer"]
+layout_mode = 2
+script = ExtResource("1_bb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottombar")
+
+[node name="Content" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SettingsButton" type="TextureButton" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "MAIN_MENU_SETTINGS"
+texture_normal = ExtResource("3_settings")
+stretch_mode = 5
+script = ExtResource("2_sb")
+
+[node name="Spacer" type="Control" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Currencies" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="CoinBox" type="PanelContainer" parent="Content/Currencies"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
+
+[node name="CoinsContainer" type="HBoxContainer" parent="Content/Currencies/CoinBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CoinIcon" type="TextureRect" parent="Content/Currencies/CoinBox/CoinsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+size_flags_vertical = 4
+texture = ExtResource("4_coins")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.94, 0.76, 0.22, 1)
+
+[node name="CoinAmount" type="Label" parent="Content/Currencies/CoinBox/CoinsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 17
+text = "1,250"
+
+[node name="GemBox" type="PanelContainer" parent="Content/Currencies"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
+
+[node name="GemsContainer" type="HBoxContainer" parent="Content/Currencies/GemBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GemIcon" type="TextureRect" parent="Content/Currencies/GemBox/GemsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+size_flags_vertical = 4
+texture = ExtResource("5_gem")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.224, 0.6, 0.804, 1)
+
+[node name="GemAmount" type="Label" parent="Content/Currencies/GemBox/GemsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 17
+text = "85"

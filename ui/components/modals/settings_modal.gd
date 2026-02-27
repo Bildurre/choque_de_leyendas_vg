@@ -5,7 +5,7 @@ class_name SettingsModal
 extends CanvasLayer
 
 const BLUR_SHADER_PATH := "res://ui/shaders/blur_overlay.gdshader"
-const GAME_SETTINGS_SCENE := "res://screens/settings/game_settings_desktop.tscn"
+const GAME_SETTINGS_SCENE := "res://screens/settings/game_settings/game_settings_desktop.tscn"
 const FADE_DURATION := 0.25
 const BUTTON_SEPARATION := 12
 

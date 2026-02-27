@@ -1,77 +1,23 @@
-[gd_scene load_steps=27 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
-[ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="2_ib"]
-[ext_resource type="Script" path="res://ui/components/buttons/settings_button.gd" id="3_sb"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/store.svg" id="4_store"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/scroll_text.svg" id="5_scroll"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/messages_square.svg" id="6_msg"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="7_users"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="8_settings"]
+[ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_desktop.tscn" id="2_topbar"]
+[ext_resource type="PackedScene" path="res://ui/components/bottom_bar/bottom_bar_desktop.tscn" id="3_bottombar"]
+[ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="4_ib"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/store.svg" id="5_store"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/scroll_text.svg" id="6_scroll"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/messages_square.svg" id="7_msg"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="8_users"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/home.jpeg" id="9_bg"]
-[ext_resource type="Script" path="res://ui/components/top_bar/hex_profile_button.gd" id="10_hex"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/user.svg" id="11_user"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="12_coins"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="13_gem"]
-[ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="14_mcb"]
-[ext_resource type="Texture2D" path="res://assets/logos/logo_full_es_light.svg" id="15_logo"]
-[ext_resource type="Shader" path="res://ui/shaders/outline.gdshader" id="16_oshader"]
-[ext_resource type="Texture2D" path="res://assets/images/cards/collection.jpeg" id="17_col_img"]
-[ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="18_play_img"]
-[ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="19_decks_img"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-content_margin_left = 12.0
-content_margin_top = 6.0
-content_margin_right = 12.0
-content_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpfill"]
-bg_color = Color(0.478, 0.392, 0.784, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbg"]
-bg_color = Color(0.15, 0.15, 0.15, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
-bg_color = Color(0.0, 0.0, 0.0, 0.0)
-content_margin_left = 32.0
-content_margin_top = 32.0
-content_margin_right = 32.0
-content_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottombar"]
-bg_color = Color(0.0, 0.0, 0.0, 0.0)
-content_margin_left = 32.0
-content_margin_top = 8.0
-content_margin_right = 32.0
-content_margin_bottom = 32.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvlbadge"]
-bg_color = Color(0.478, 0.392, 0.784, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 5.0
-content_margin_top = 2.0
-content_margin_right = 5.0
-content_margin_bottom = 2.0
+[ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="10_mcb"]
+[ext_resource type="Texture2D" path="res://assets/logos/logo_full_es_light.svg" id="11_logo"]
+[ext_resource type="Shader" path="res://ui/shaders/outline.gdshader" id="12_oshader"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/collection.jpeg" id="13_col_img"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="14_play_img"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="15_decks_img"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
-shader = ExtResource("16_oshader")
+shader = ExtResource("12_oshader")
 shader_parameter/outline_color = Color(0.05, 0.05, 0.1, 0.9)
 shader_parameter/outline_width = 2.0
 
@@ -113,80 +59,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopSection" type="PanelContainer" parent="Layout"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
-
-[node name="TopBar" type="HBoxContainer" parent="Layout/TopSection"]
-layout_mode = 2
-
-[node name="Spacer" type="Control" parent="Layout/TopSection/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ProfileArea" type="HBoxContainer" parent="Layout/TopSection/TopBar"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 14
-
-[node name="UserInfo" type="VBoxContainer" parent="Layout/TopSection/TopBar/ProfileArea"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 4
-
-[node name="Username" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Jugador#1234"
-
-[node name="XPBar" type="ProgressBar" parent="Layout/TopSection/TopBar/ProfileArea/UserInfo"]
-layout_mode = 2
-custom_minimum_size = Vector2(180, 14)
-max_value = 120.0
-value = 46.0
-show_percentage = false
-tooltip_text = "46 / 120 XP"
-theme_override_styles/fill = SubResource("StyleBoxFlat_xpfill")
-theme_override_styles/background = SubResource("StyleBoxFlat_xpbg")
-
-[node name="ProfileButton" type="Control" parent="Layout/TopSection/TopBar/ProfileArea"]
-layout_mode = 2
-custom_minimum_size = Vector2(68, 68)
-size_flags_vertical = 4
-script = ExtResource("10_hex")
-
-[node name="UserIcon" type="TextureRect" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = -15.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_user")
-expand_mode = 1
-stretch_mode = 5
-mouse_filter = 2
-
-[node name="LevelBadge" type="PanelContainer" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 42.0
-offset_top = 44.0
-offset_right = 72.0
-offset_bottom = 68.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lvlbadge")
-
-[node name="LevelLabel" type="Label" parent="Layout/TopSection/TopBar/ProfileArea/ProfileButton/LevelBadge"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "12"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TopBar" parent="Layout" instance=ExtResource("2_topbar")]
+unique_name_in_owner = true
 
 [node name="MiddleSection" type="MarginContainer" parent="Layout"]
 layout_mode = 2
@@ -211,7 +85,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_logo")
+texture = ExtResource("11_logo")
 expand_mode = 1
 stretch_mode = 5
 material = SubResource("ShaderMaterial_outline")
@@ -228,27 +102,27 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Colección"
-script = ExtResource("14_mcb")
+script = ExtResource("10_mcb")
 accent_color = Color(0.161, 0.671, 0.373, 1)
-background_texture = ExtResource("17_col_img")
+background_texture = ExtResource("13_col_img")
 
 [node name="PlayButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Jugar"
-script = ExtResource("14_mcb")
+script = ExtResource("10_mcb")
 accent_color = Color(0.945, 0.349, 0.349, 1)
-background_texture = ExtResource("18_play_img")
+background_texture = ExtResource("14_play_img")
 
 [node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Mazos"
-script = ExtResource("14_mcb")
+script = ExtResource("10_mcb")
 accent_color = Color(0.251, 0.549, 0.992, 1)
-background_texture = ExtResource("19_decks_img")
+background_texture = ExtResource("15_decks_img")
 
 [node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
@@ -259,101 +133,33 @@ theme_override_constants/separation = 20
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_SHOP"
-icon = ExtResource("4_store")
-script = ExtResource("2_ib")
+icon = ExtResource("5_store")
+script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
 [node name="MissionsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_MISSIONS"
-icon = ExtResource("5_scroll")
-script = ExtResource("2_ib")
+icon = ExtResource("6_scroll")
+script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
 [node name="SocialButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_SOCIAL"
-icon = ExtResource("6_msg")
-script = ExtResource("2_ib")
+icon = ExtResource("7_msg")
+script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
 [node name="FriendsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_FRIENDS"
-icon = ExtResource("7_users")
-script = ExtResource("2_ib")
+icon = ExtResource("8_users")
+script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="SettingsBar" type="PanelContainer" parent="Layout"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bottombar")
-
-[node name="Content" type="HBoxContainer" parent="Layout/SettingsBar"]
-layout_mode = 2
-alignment = 0
-
-[node name="SettingsButton" type="TextureButton" parent="Layout/SettingsBar/Content"]
+[node name="BottomBar" parent="Layout" instance=ExtResource("3_bottombar")]
 unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "MAIN_MENU_SETTINGS"
-texture_normal = ExtResource("8_settings")
-stretch_mode = 5
-script = ExtResource("3_sb")
-
-[node name="BottomSpacer" type="Control" parent="Layout/SettingsBar/Content"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Currencies" type="HBoxContainer" parent="Layout/SettingsBar/Content"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 12
-
-[node name="CoinBox" type="PanelContainer" parent="Layout/SettingsBar/Content/Currencies"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
-
-[node name="CoinsContainer" type="HBoxContainer" parent="Layout/SettingsBar/Content/Currencies/CoinBox"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="CoinIcon" type="TextureRect" parent="Layout/SettingsBar/Content/Currencies/CoinBox/CoinsContainer"]
-layout_mode = 2
-custom_minimum_size = Vector2(28, 28)
-size_flags_vertical = 4
-texture = ExtResource("12_coins")
-expand_mode = 1
-stretch_mode = 5
-modulate = Color(0.94, 0.76, 0.22, 1)
-
-[node name="CoinAmount" type="Label" parent="Layout/SettingsBar/Content/Currencies/CoinBox/CoinsContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 17
-text = "1,250"
-
-[node name="GemBox" type="PanelContainer" parent="Layout/SettingsBar/Content/Currencies"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
-
-[node name="GemsContainer" type="HBoxContainer" parent="Layout/SettingsBar/Content/Currencies/GemBox"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="GemIcon" type="TextureRect" parent="Layout/SettingsBar/Content/Currencies/GemBox/GemsContainer"]
-layout_mode = 2
-custom_minimum_size = Vector2(28, 28)
-size_flags_vertical = 4
-texture = ExtResource("13_gem")
-expand_mode = 1
-stretch_mode = 5
-modulate = Color(0.224, 0.6, 0.804, 1)
-
-[node name="GemAmount" type="Label" parent="Layout/SettingsBar/Content/Currencies/GemBox/GemsContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 17
-text = "85"

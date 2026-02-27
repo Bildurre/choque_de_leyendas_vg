@@ -15,7 +15,7 @@ func _ready() -> void:
 	_connect_button("MissionsButton", _on_missions_pressed)
 	_connect_button("SocialButton", _on_social_pressed)
 	_connect_button("FriendsButton", _on_friends_pressed)
-	_connect_button("SettingsButton", _on_settings_pressed)
+	%BottomBar.settings_pressed.connect(_on_settings_pressed)
 
 
 func _unhandled_input(event: InputEvent) -> void:
