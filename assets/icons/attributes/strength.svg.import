@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctwmvm4hdrwpy"
-path="res://.godot/imported/logo_full_en_light.svg-e988023d91bf6564b6e147c81aba6160.ctex"
+uid="uid://d1jkako2jqtfc"
+path="res://.godot/imported/strength.svg-0f79044e71d2e23bacb6dfdaff762074.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/logos/logo_full_en_light.svg"
-dest_files=["res://.godot/imported/logo_full_en_light.svg-e988023d91bf6564b6e147c81aba6160.ctex"]
+source_file="res://assets/icons/attributes/strength.svg"
+dest_files=["res://.godot/imported/strength.svg-0f79044e71d2e23bacb6dfdaff762074.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,6 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=4.0
+svg/scale=1.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false
