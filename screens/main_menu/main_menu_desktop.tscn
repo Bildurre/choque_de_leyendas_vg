@@ -288,30 +288,12 @@ text = "Mazos"
 script = ExtResource("14_mcb")
 accent_color = Color(0.251, 0.549, 0.992, 1)
 
-[node name="BottomSection" type="Control" parent="Layout"]
+[node name="NavBar" type="HBoxContainer" parent="Layout"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 150)
-
-[node name="BottomBg" type="ColorRect" parent="Layout/BottomSection"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0, 0.0, 0.0, 0.35)
-mouse_filter = 2
-
-[node name="CenterButtons" type="HBoxContainer" parent="Layout/BottomSection"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_top = 12.0
-grow_horizontal = 2
+alignment = 1
 theme_override_constants/separation = 20
 
-[node name="ShopButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+[node name="ShopButton" type="Button" parent="Layout/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_SHOP"
@@ -319,7 +301,7 @@ icon = ExtResource("4_store")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="MissionsButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+[node name="MissionsButton" type="Button" parent="Layout/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_MISSIONS"
@@ -327,7 +309,7 @@ icon = ExtResource("5_scroll")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="SocialButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+[node name="SocialButton" type="Button" parent="Layout/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_SOCIAL"
@@ -335,7 +317,7 @@ icon = ExtResource("6_msg")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="FriendsButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
+[node name="FriendsButton" type="Button" parent="Layout/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_FRIENDS"
@@ -343,20 +325,14 @@ icon = ExtResource("7_users")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="SettingsButton" type="TextureButton" parent="Layout/BottomSection"]
+[node name="SettingsBar" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+alignment = 2
+
+[node name="SettingsButton" type="TextureButton" parent="Layout/SettingsBar"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -56.0
-offset_top = -44.0
-offset_right = -24.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 2
+custom_minimum_size = Vector2(32, 32)
 tooltip_text = "MAIN_MENU_SETTINGS"
 texture_normal = ExtResource("8_settings")
 stretch_mode = 5
