@@ -59,11 +59,10 @@ func _style_option_button(btn: OptionButton) -> void:
 	hover.content_margin_bottom = 6.0
 	btn.add_theme_stylebox_override("hover", hover)
 
-	# Hide the dropdown arrow — text only.
-	var img := Image.create(1, 1, false, Image.FORMAT_RGBA8)
-	img.fill(Color.TRANSPARENT)
-	btn.add_theme_icon_override("arrow", ImageTexture.create_from_image(img))
-	btn.add_theme_constant_override("arrow_margin", 0)
+	# Chevron indicator for dropdown.
+	var chevron := load("res://assets/icons/placeholder/chevrons_up_down.svg")
+	btn.add_theme_icon_override("arrow", chevron)
+	btn.add_theme_constant_override("arrow_margin", 4)
 
 	# Style the popup dropdown.
 	var popup := btn.get_popup()
