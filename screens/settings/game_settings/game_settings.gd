@@ -8,6 +8,7 @@ const MAIN_MENU_SCENE := "res://screens/main_menu/main_menu_desktop.tscn"
 func _ready() -> void:
 	%BackButton.pressed.connect(_on_back_pressed)
 	%LanguageSelector.item_selected.connect(_on_language_changed)
+	%TopBar.back_pressed.connect(_on_back_pressed)
 	%BottomBar.settings_pressed.connect(_on_back_pressed)
 
 	_style_option_button(%LanguageSelector)

@@ -47,6 +47,7 @@ grow_vertical = 2
 
 [node name="TopBar" parent="Layout" instance=ExtResource("3_topbar")]
 unique_name_in_owner = true
+show_back_button = true
 
 [node name="MiddleSection" type="MarginContainer" parent="Layout"]
 layout_mode = 2
