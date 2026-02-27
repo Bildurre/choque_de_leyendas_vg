@@ -6,12 +6,11 @@ const HOME_SCENE := "res://screens/home/home_desktop.tscn"
 
 
 func _ready() -> void:
-	%BackButton.pressed.connect(_on_back_pressed)
 	%LanguageSelector.item_selected.connect(_on_language_changed)
 	%TopBar.back_pressed.connect(_on_back_pressed)
 
+	_sync_language_selector()
 	_style_option_button(%LanguageSelector)
-	_style_options_panel()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -24,26 +23,21 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file(HOME_SCENE)
 
 
+func _sync_language_selector() -> void:
+	var locale := TranslationServer.get_locale()
+	match locale:
+		"es":
+			%LanguageSelector.selected = 0
+		"en":
+			%LanguageSelector.selected = 1
+
+
 func _on_language_changed(index: int) -> void:
 	match index:
 		0:
 			TranslationServer.set_locale("es")
 		1:
 			TranslationServer.set_locale("en")
-
-
-func _style_options_panel() -> void:
-	var panel := get_node("Layout/MiddleSection/ContentColumn/OptionsPanel") as PanelContainer
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.08, 0.08, 0.08, 0.6)
-	style.set_corner_radius_all(12)
-	style.border_color = Color(GameColors.COLOR_PURPLE, 0.3)
-	style.set_border_width_all(1)
-	style.content_margin_left = 32.0
-	style.content_margin_right = 32.0
-	style.content_margin_top = 20.0
-	style.content_margin_bottom = 20.0
-	panel.add_theme_stylebox_override("panel", style)
 
 
 func _style_option_button(btn: OptionButton) -> void:
