@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3]
 
-[ext_resource type="Script" path="res://screens/main_menu/main_menu.gd" id="1_main"]
+[ext_resource type="Script" path="res://screens/home/home.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_desktop.tscn" id="2_topbar"]
 [ext_resource type="PackedScene" path="res://ui/components/bottom_bar/bottom_bar_desktop.tscn" id="3_bottombar"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="4_ib"]
@@ -21,7 +21,7 @@ shader = ExtResource("12_oshader")
 shader_parameter/outline_color = Color(0.05, 0.05, 0.1, 0.9)
 shader_parameter/outline_width = 2.0
 
-[node name="MainMenu" type="Control"]
+[node name="Home" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,7 +132,7 @@ theme_override_constants/separation = 20
 [node name="ShopButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "MAIN_MENU_SHOP"
+tooltip_text = "HOME_SHOP"
 icon = ExtResource("5_store")
 script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
@@ -140,7 +140,7 @@ hover_color = Color(0.478, 0.392, 0.784, 1)
 [node name="MissionsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "MAIN_MENU_MISSIONS"
+tooltip_text = "HOME_MISSIONS"
 icon = ExtResource("6_scroll")
 script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
@@ -148,7 +148,7 @@ hover_color = Color(0.478, 0.392, 0.784, 1)
 [node name="SocialButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "MAIN_MENU_SOCIAL"
+tooltip_text = "HOME_SOCIAL"
 icon = ExtResource("7_msg")
 script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
@@ -156,7 +156,7 @@ hover_color = Color(0.478, 0.392, 0.784, 1)
 [node name="FriendsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "MAIN_MENU_FRIENDS"
+tooltip_text = "HOME_FRIENDS"
 icon = ExtResource("8_users")
 script = ExtResource("4_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)

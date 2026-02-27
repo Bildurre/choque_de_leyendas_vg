@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/components/top_bar/top_bar.gd" id="1_tb"]
 [ext_resource type="Script" path="res://ui/components/top_bar/hex_profile_button.gd" id="2_hex"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/user.svg" id="3_user"]
-[ext_resource type="Texture2D" path="res://assets/icons/back_arrow.svg" id="4_back"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/arrow_big_left_dash.svg" id="4_back"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
 bg_color = Color(0.0, 0.0, 0.0, 0.0)

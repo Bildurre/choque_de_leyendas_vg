@@ -35,7 +35,7 @@ layout_mode = 2
 [node name="SettingsButton" type="TextureButton" parent="Content"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "MAIN_MENU_SETTINGS"
+tooltip_text = "HOME_SETTINGS"
 texture_normal = ExtResource("3_settings")
 stretch_mode = 5
 script = ExtResource("2_sb")

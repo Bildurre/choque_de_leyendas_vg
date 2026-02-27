@@ -16,3 +16,5 @@ signal back_pressed
 func _ready() -> void:
 	%BackArrow.visible = show_back_button
 	%BackArrow.pressed.connect(func(): back_pressed.emit())
+	%BackArrow.mouse_entered.connect(func(): %BackArrow.modulate = Color.WHITE)
+	%BackArrow.mouse_exited.connect(func(): %BackArrow.modulate = Color(1, 1, 1, 0.7))

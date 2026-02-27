@@ -2,27 +2,26 @@
 ## Muestra opciones de configuracion del juego en formato tabla.
 extends Control
 
-const MAIN_MENU_SCENE := "res://screens/main_menu/main_menu_desktop.tscn"
+const HOME_SCENE := "res://screens/home/home_desktop.tscn"
 
 
 func _ready() -> void:
 	%BackButton.pressed.connect(_on_back_pressed)
 	%LanguageSelector.item_selected.connect(_on_language_changed)
 	%TopBar.back_pressed.connect(_on_back_pressed)
-	%BottomBar.settings_pressed.connect(_on_back_pressed)
 
 	_style_option_button(%LanguageSelector)
 	_style_options_panel()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and not %BottomBar.has_modal_open():
 		_on_back_pressed()
 		get_viewport().set_input_as_handled()
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+	get_tree().change_scene_to_file(HOME_SCENE)
 
 
 func _on_language_changed(index: int) -> void:

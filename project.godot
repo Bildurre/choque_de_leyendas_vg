@@ -7,7 +7,7 @@ config_version=5
 [application]
 
 config/name="Choque de Leyendas"
-run/main_scene="res://screens/main_menu/main_menu_desktop.tscn"
+run/main_scene="res://screens/home/home_desktop.tscn"
 config/features=PackedStringArray("4.3")
 
 [autoload]
