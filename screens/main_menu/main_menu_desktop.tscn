@@ -292,7 +292,7 @@ accent_color = Color(0.251, 0.549, 0.992, 1)
 
 [node name="BottomSection" type="Control" parent="Layout"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(0, 150)
 
 [node name="BottomBg" type="ColorRect" parent="Layout/BottomSection"]
 layout_mode = 1
@@ -306,13 +306,11 @@ mouse_filter = 2
 
 [node name="CenterButtons" type="HBoxContainer" parent="Layout/BottomSection"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
+offset_top = 12.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="ShopButton" type="Button" parent="Layout/BottomSection/CenterButtons"]
@@ -350,17 +348,17 @@ hover_color = Color(0.478, 0.392, 0.784, 1)
 [node name="SettingsButton" type="TextureButton" parent="Layout/BottomSection"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -68.0
-offset_top = -16.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -44.0
 offset_right = -24.0
-offset_bottom = 16.0
+offset_bottom = -12.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 tooltip_text = "MAIN_MENU_SETTINGS"
 texture_normal = ExtResource("8_settings")
 stretch_mode = 5
