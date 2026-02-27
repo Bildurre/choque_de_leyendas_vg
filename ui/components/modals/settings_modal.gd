@@ -16,7 +16,7 @@ var _panel: PanelContainer
 var _tween: Tween
 
 ## Nombres de los botones del menu.
-var _button_labels := ["Juego", "Gráficos", "Audio", "Volver", "Salir"]
+var _button_labels := ["Cambiar", "Juego", "Gráficos", "Audio", "Volver", "Salir"]
 
 
 func _ready() -> void:
@@ -54,10 +54,12 @@ func _build_ui() -> void:
 	_panel = PanelContainer.new()
 	_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 	var panel_style := StyleBoxFlat.new()
-	panel_style.bg_color = Color(0.08, 0.08, 0.08, 0.85)
+	panel_style.bg_color = Color(0.08, 0.08, 0.08, 1.0)
 	panel_style.set_corner_radius_all(16)
-	panel_style.border_color = Color(0.3, 0.3, 0.3, 0.3)
-	panel_style.set_border_width_all(1)
+	panel_style.border_color = GameColors.COLOR_PURPLE
+	panel_style.set_border_width_all(2)
+	panel_style.shadow_color = Color(GameColors.COLOR_PURPLE, 0.4)
+	panel_style.shadow_size = 12
 	panel_style.content_margin_left = 48.0
 	panel_style.content_margin_right = 48.0
 	panel_style.content_margin_top = 40.0
@@ -91,6 +93,15 @@ func _build_ui() -> void:
 
 	# --- Botones ---
 	for label_text in _button_labels:
+		if label_text == "Salir":
+			var sep := HSeparator.new()
+			sep.add_theme_stylebox_override("separator", StyleBoxLine.new())
+			var sep_style := sep.get_theme_stylebox("separator") as StyleBoxLine
+			sep_style.color = Color(0.3, 0.3, 0.3, 0.5)
+			sep_style.thickness = 1
+			sep_style.content_margin_top = 8.0
+			sep_style.content_margin_bottom = 4.0
+			vbox.add_child(sep)
 		var btn := Button.new()
 		btn.text = label_text
 		btn.script = load("res://ui/components/buttons/menu_option_button.gd")
@@ -100,6 +111,8 @@ func _build_ui() -> void:
 
 func _on_button_pressed(label_text: String) -> void:
 	match label_text:
+		"Cambiar":
+			print("[SettingsModal] Cambiar pressed")
 		"Volver":
 			_close()
 		"Salir":
