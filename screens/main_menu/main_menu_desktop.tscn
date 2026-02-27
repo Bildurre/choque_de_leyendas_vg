@@ -240,6 +240,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="ContentColumn" type="VBoxContainer" parent="Layout/MiddleSection"]
 layout_mode = 2
+theme_override_constants/separation = 24
 
 [node name="LogoContainer" type="Control" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
