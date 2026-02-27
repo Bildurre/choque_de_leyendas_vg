@@ -38,8 +38,8 @@ func _ready() -> void:
 	add_theme_color_override("font_color", Color.WHITE)
 	add_theme_color_override("font_hover_color", Color.WHITE)
 	add_theme_color_override("font_pressed_color", Color.WHITE)
-	add_theme_color_override("font_outline_color", accent_color)
-	add_theme_constant_override("outline_size", 8)
+	add_theme_color_override("font_outline_color", Color.BLACK)
+	add_theme_constant_override("outline_size", 12)
 
 	_setup_styles()
 	_setup_background()

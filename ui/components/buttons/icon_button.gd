@@ -8,7 +8,7 @@ extends Button
 @export var hover_color: Color = GameColors.COLOR_PURPLE
 
 ## Tamanio total del boton (diametro).
-@export var button_diameter: float = 96.0
+@export var button_diameter: float = 112.0
 
 ## Padding interior entre el borde del boton y el icono.
 @export var icon_padding: float = 24.0
