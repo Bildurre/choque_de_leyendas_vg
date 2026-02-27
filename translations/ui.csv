@@ -13,3 +13,10 @@ SETTINGS_GENERAL,Generales,General
 SETTINGS_LANGUAGE,Idioma,Language
 LANG_ES,Castellano,Spanish
 LANG_EN,Inglés,English
+MODAL_TITLE,Opciones,Options
+MODAL_SWITCH,Cambiar,Switch
+MODAL_GAME,Juego,Game
+MODAL_GRAPHICS,Gráficos,Graphics
+MODAL_AUDIO,Audio,Audio
+MODAL_BACK,Volver,Back
+MODAL_EXIT,Salir,Exit

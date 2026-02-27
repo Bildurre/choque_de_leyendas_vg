@@ -16,8 +16,8 @@ var _backdrop: ColorRect
 var _panel: PanelContainer
 var _tween: Tween
 
-## Nombres de los botones del menu.
-var _button_labels := ["Cambiar", "Juego", "Gráficos", "Audio", "Volver", "Salir"]
+## Claves de traduccion de los botones del menu.
+var _button_keys := ["MODAL_SWITCH", "MODAL_GAME", "MODAL_GRAPHICS", "MODAL_AUDIO", "MODAL_BACK", "MODAL_EXIT"]
 
 
 func _ready() -> void:
@@ -76,7 +76,7 @@ func _build_ui() -> void:
 
 	# --- Titulo ---
 	var title := Label.new()
-	title.text = "Opciones"
+	title.text = "MODAL_TITLE"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var font := load("res://assets/fonts/imfellenglish/IMFellEnglish-Regular.ttf") as Font
 	if font:
@@ -93,30 +93,30 @@ func _build_ui() -> void:
 	vbox.add_child(spacer)
 
 	# --- Botones ---
-	for label_text in _button_labels:
-		if label_text == "Salir":
+	for key in _button_keys:
+		if key == "MODAL_EXIT":
 			var spacer_salir := Control.new()
 			spacer_salir.custom_minimum_size.y = 12.0
 			vbox.add_child(spacer_salir)
 		var btn := Button.new()
-		btn.text = label_text
+		btn.text = key
 		btn.script = load("res://ui/components/buttons/menu_option_button.gd")
-		btn.pressed.connect(_on_button_pressed.bind(label_text))
+		btn.pressed.connect(_on_button_pressed.bind(key))
 		vbox.add_child(btn)
 
 
-func _on_button_pressed(label_text: String) -> void:
-	match label_text:
-		"Cambiar":
-			print("[SettingsModal] Cambiar pressed")
-		"Juego":
+func _on_button_pressed(key: String) -> void:
+	match key:
+		"MODAL_SWITCH":
+			print("[SettingsModal] Switch pressed")
+		"MODAL_GAME":
 			get_tree().change_scene_to_file(GAME_SETTINGS_SCENE)
-		"Volver":
+		"MODAL_BACK":
 			_close()
-		"Salir":
+		"MODAL_EXIT":
 			get_tree().quit()
 		_:
-			print("[SettingsModal] %s pressed" % label_text)
+			print("[SettingsModal] %s pressed" % key)
 
 
 func _on_backdrop_input(event: InputEvent) -> void:
