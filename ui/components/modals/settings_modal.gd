@@ -126,14 +126,14 @@ func _close() -> void:
 
 
 func _fade_in() -> void:
-	modulate = Color(1, 1, 1, 0)
+	_backdrop.modulate = Color(1, 1, 1, 0)
 	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	_tween.tween_property(self, "modulate:a", 1.0, FADE_DURATION)
+	_tween.tween_property(_backdrop, "modulate:a", 1.0, FADE_DURATION)
 
 
 func _fade_out() -> void:
 	_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	_tween.tween_property(self, "modulate:a", 0.0, FADE_DURATION)
+	_tween.tween_property(_backdrop, "modulate:a", 0.0, FADE_DURATION)
 	_tween.tween_callback(_on_fade_out_done)
 
 
