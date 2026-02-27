@@ -1,9 +1,13 @@
 keys,es,en
 HOME_PLAY,Jugar,Play
-HOME_COLLECTION,Coleccion,Collection
+HOME_COLLECTION,Colección,Collection
+HOME_DECKS,Mazos,Decks
 HOME_SHOP,Tienda,Shop
 HOME_MISSIONS,Misiones,Missions
 HOME_SOCIAL,Social,Social
 HOME_FRIENDS,Amigos,Friends
 HOME_SETTINGS,Ajustes,Settings
 HOME_PROFILE,Perfil,Profile
+SETTINGS_TITLE,Opciones de Juego,Game Settings
+SETTINGS_GENERAL,Generales,General
+SETTINGS_LANGUAGE,Idioma,Language

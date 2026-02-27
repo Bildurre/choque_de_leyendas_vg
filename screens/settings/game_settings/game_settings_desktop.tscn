@@ -65,7 +65,7 @@ theme_override_font_sizes/font_size = 48
 theme_override_colors/font_color = Color(0.98, 0.98, 0.98, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-text = "Opciones de Juego"
+text = "SETTINGS_TITLE"
 
 [node name="TitleSpacer" type="Control" parent="Layout/ContentArea/ContentColumn"]
 layout_mode = 2
@@ -78,7 +78,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_colors/font_color = Color(0.75, 0.65, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
-text = "Generales"
+text = "SETTINGS_GENERAL"
 
 [node name="SectionSpacer" type="Control" parent="Layout/ContentArea/ContentColumn"]
 layout_mode = 2
@@ -104,7 +104,7 @@ theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
-text = "Idioma"
+text = "SETTINGS_LANGUAGE"
 vertical_alignment = 1
 
 [node name="LanguageSelector" type="OptionButton" parent="Layout/ContentArea/ContentColumn/LanguageRow"]

@@ -41,24 +41,70 @@ func _on_language_changed(index: int) -> void:
 
 
 func _style_option_button(btn: OptionButton) -> void:
-	var normal := StyleBoxFlat.new()
-	normal.bg_color = Color(0.12, 0.12, 0.12, 0.7)
-	normal.set_corner_radius_all(8)
-	normal.border_color = Color(0.3, 0.3, 0.3, 0.4)
-	normal.set_border_width_all(2)
-	normal.content_margin_left = 16.0
-	normal.content_margin_right = 16.0
-	normal.content_margin_top = 10.0
-	normal.content_margin_bottom = 10.0
-	btn.add_theme_stylebox_override("normal", normal)
+	var empty := StyleBoxEmpty.new()
+	empty.content_margin_left = 8.0
+	empty.content_margin_right = 8.0
+	empty.content_margin_top = 6.0
+	empty.content_margin_bottom = 6.0
+	btn.add_theme_stylebox_override("normal", empty)
+	btn.add_theme_stylebox_override("pressed", empty)
+	btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 
 	var hover := StyleBoxFlat.new()
-	hover.bg_color = Color(0.478, 0.392, 0.784, 0.3)
-	hover.set_corner_radius_all(8)
-	hover.border_color = Color(0.478, 0.392, 0.784, 0.6)
-	hover.set_border_width_all(2)
-	hover.content_margin_left = 16.0
-	hover.content_margin_right = 16.0
-	hover.content_margin_top = 10.0
-	hover.content_margin_bottom = 10.0
+	hover.bg_color = Color(1.0, 1.0, 1.0, 0.06)
+	hover.set_corner_radius_all(4)
+	hover.content_margin_left = 8.0
+	hover.content_margin_right = 8.0
+	hover.content_margin_top = 6.0
+	hover.content_margin_bottom = 6.0
 	btn.add_theme_stylebox_override("hover", hover)
+
+	# Hide the dropdown arrow — text only.
+	var img := Image.create(1, 1, false, Image.FORMAT_RGBA8)
+	img.fill(Color.TRANSPARENT)
+	btn.add_theme_icon_override("arrow", ImageTexture.create_from_image(img))
+	btn.add_theme_constant_override("arrow_margin", 0)
+
+	# Style the popup dropdown.
+	var popup := btn.get_popup()
+	_strip_popup_checks(popup)
+	popup.about_to_popup.connect(_strip_popup_checks.bind(popup))
+
+	var panel := StyleBoxFlat.new()
+	panel.bg_color = Color(0.1, 0.1, 0.1, 0.95)
+	panel.set_corner_radius_all(6)
+	panel.border_color = Color(0.3, 0.3, 0.3, 0.3)
+	panel.set_border_width_all(1)
+	panel.content_margin_left = 4.0
+	panel.content_margin_right = 4.0
+	panel.content_margin_top = 4.0
+	panel.content_margin_bottom = 4.0
+	popup.add_theme_stylebox_override("panel", panel)
+
+	var popup_normal := StyleBoxEmpty.new()
+	popup_normal.content_margin_left = 12.0
+	popup_normal.content_margin_right = 12.0
+	popup_normal.content_margin_top = 8.0
+	popup_normal.content_margin_bottom = 8.0
+	popup.add_theme_stylebox_override("normal", popup_normal)
+
+	var popup_hover := StyleBoxFlat.new()
+	popup_hover.bg_color = Color(0.478, 0.392, 0.784, 0.3)
+	popup_hover.set_corner_radius_all(4)
+	popup_hover.content_margin_left = 12.0
+	popup_hover.content_margin_right = 12.0
+	popup_hover.content_margin_top = 8.0
+	popup_hover.content_margin_bottom = 8.0
+	popup.add_theme_stylebox_override("hover", popup_hover)
+
+	var font := load("res://assets/fonts/imfellenglish/IMFellEnglish-Regular.ttf")
+	if font:
+		popup.add_theme_font_override("font", font)
+	popup.add_theme_font_size_override("font_size", 22)
+	popup.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85, 1))
+	popup.add_theme_color_override("font_hover_color", Color.WHITE)
+
+
+func _strip_popup_checks(popup: PopupMenu) -> void:
+	for i in popup.item_count:
+		popup.set_item_as_radio_checkable(i, false)
