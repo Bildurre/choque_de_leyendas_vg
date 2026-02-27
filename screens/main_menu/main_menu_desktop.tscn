@@ -240,12 +240,12 @@ text = "85"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.7
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="ContentColumn" type="VBoxContainer" parent="Layout/MiddleSection"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 48
 
 [node name="LogoContainer" type="Control" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
@@ -295,12 +295,12 @@ text = "Mazos"
 script = ExtResource("14_mcb")
 accent_color = Color(0.251, 0.549, 0.992, 1)
 
-[node name="NavBar" type="HBoxContainer" parent="Layout"]
+[node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 20
 
-[node name="ShopButton" type="Button" parent="Layout/NavBar"]
+[node name="ShopButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_SHOP"
@@ -308,7 +308,7 @@ icon = ExtResource("4_store")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="MissionsButton" type="Button" parent="Layout/NavBar"]
+[node name="MissionsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_MISSIONS"
@@ -316,7 +316,7 @@ icon = ExtResource("5_scroll")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="SocialButton" type="Button" parent="Layout/NavBar"]
+[node name="SocialButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_SOCIAL"
@@ -324,7 +324,7 @@ icon = ExtResource("6_msg")
 script = ExtResource("2_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
 
-[node name="FriendsButton" type="Button" parent="Layout/NavBar"]
+[node name="FriendsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "MAIN_MENU_FRIENDS"
