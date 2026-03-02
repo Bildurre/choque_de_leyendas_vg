@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" path="res://assets/fonts/italianno/Italianno-Regular.ttf" id="2_italianno"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
-bg_color = Color(0.9, 0.89, 0.94, 0.95)
+bg_color = Color(0.9, 0.89, 0.94, 0.85)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
