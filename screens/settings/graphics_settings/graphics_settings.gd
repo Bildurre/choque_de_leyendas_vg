@@ -59,7 +59,9 @@ func _populate_resolutions() -> void:
 
 	# Resolución nativa de la pantalla.
 	var native := DisplayServer.screen_get_size()
-	var current_size := get_window().size
+	# Si la ventana está maximizada, considerar la resolución nativa.
+	var win := get_window()
+	var current_size := native if win.mode == Window.MODE_MAXIMIZED else win.size
 
 	# Filtrar resoluciones que caben en la pantalla nativa.
 	_resolutions = []
