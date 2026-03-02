@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="Script" path="res://screens/home/home.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_mobile.tscn" id="2_topbar"]
@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="17_settings"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="18_coins"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="19_gem"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/swords.svg" id="20_swords"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/grid_3x3.svg" id="21_grid"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/refrigerator.svg" id="22_fridge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
 shader = ExtResource("13_oshader")
@@ -48,7 +51,7 @@ bg_color = Color(0.0, 0.0, 0.0, 0.0)
 content_margin_left = 16.0
 content_margin_top = 1.0
 content_margin_right = 16.0
-content_margin_bottom = 4.0
+content_margin_bottom = 10.0
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -192,7 +195,10 @@ text = "HOME_PLAY"
 script = ExtResource("11_mcb")
 accent_color = Color(0.945, 0.349, 0.349, 1)
 background_texture = ExtResource("15_play_img")
-label_font_size = 24
+icon_texture = ExtResource("20_swords")
+icon_placement = "right"
+icon_display_size = 28.0
+label_font_size = 28
 keep_aspect_ratio = false
 
 [node name="SecondRow" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn/CardSection"]
@@ -209,7 +215,9 @@ text = "HOME_COLLECTION"
 script = ExtResource("11_mcb")
 accent_color = Color(0.161, 0.671, 0.373, 1)
 background_texture = ExtResource("14_col_img")
-label_font_size = 18
+icon_texture = ExtResource("21_grid")
+icon_display_size = 20.0
+label_font_size = 22
 keep_aspect_ratio = false
 
 [node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardSection/SecondRow"]
@@ -221,7 +229,9 @@ text = "HOME_DECKS"
 script = ExtResource("11_mcb")
 accent_color = Color(0.251, 0.549, 0.992, 1)
 background_texture = ExtResource("16_decks_img")
-label_font_size = 18
+icon_texture = ExtResource("22_fridge")
+icon_display_size = 20.0
+label_font_size = 22
 keep_aspect_ratio = false
 
 [node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]

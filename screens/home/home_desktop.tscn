@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://screens/home/home.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_desktop.tscn" id="2_topbar"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="14_play_img"]
 [ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="15_decks_img"]
 [ext_resource type="Script" path="res://ui/components/layout/content_limiter.gd" id="16_cl"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/swords.svg" id="17_swords"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/grid_3x3.svg" id="18_grid"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/refrigerator.svg" id="19_fridge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
 shader = ExtResource("12_oshader")
@@ -106,6 +109,9 @@ text = "HOME_COLLECTION"
 script = ExtResource("10_mcb")
 accent_color = Color(0.161, 0.671, 0.373, 1)
 background_texture = ExtResource("13_col_img")
+icon_texture = ExtResource("18_grid")
+icon_display_size = 42.0
+label_font_size = 52
 
 [node name="PlayButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
@@ -115,6 +121,9 @@ text = "HOME_PLAY"
 script = ExtResource("10_mcb")
 accent_color = Color(0.945, 0.349, 0.349, 1)
 background_texture = ExtResource("14_play_img")
+icon_texture = ExtResource("17_swords")
+icon_display_size = 42.0
+label_font_size = 52
 
 [node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
 unique_name_in_owner = true
@@ -124,6 +133,9 @@ text = "HOME_DECKS"
 script = ExtResource("10_mcb")
 accent_color = Color(0.251, 0.549, 0.992, 1)
 background_texture = ExtResource("15_decks_img")
+icon_texture = ExtResource("19_fridge")
+icon_display_size = 42.0
+label_font_size = 52
 
 [node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2

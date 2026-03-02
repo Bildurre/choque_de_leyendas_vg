@@ -10,6 +10,15 @@ extends Button
 ## Textura de fondo (se muestra en escala de grises con el tinte del accent_color).
 @export var background_texture: Texture2D
 
+## Icono decorativo (se muestra encima o al lado del texto).
+@export var icon_texture: Texture2D
+
+## Posicion del icono: "top" = encima del texto, "right" = a la derecha.
+@export var icon_placement: String = "top"
+
+## Tamanio del icono en pixeles.
+@export var icon_display_size: float = 32.0
+
 ## Grosor del borde.
 @export var border_width: int = 3
 
@@ -34,6 +43,7 @@ var _tween: Tween
 
 
 func _ready() -> void:
+	clip_contents = true
 	expand_icon = false
 	alignment = HORIZONTAL_ALIGNMENT_CENTER
 
@@ -49,6 +59,10 @@ func _ready() -> void:
 
 	_setup_styles()
 	_setup_background()
+
+	if icon_texture:
+		_setup_icon_layout()
+
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	resized.connect(_on_resized)
 	mouse_entered.connect(_on_hover_entered)
@@ -88,6 +102,55 @@ func _setup_background() -> void:
 	_bg.show_behind_parent = true
 	_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_bg)
+
+
+func _setup_icon_layout() -> void:
+	var original_text := text
+	text = ""
+
+	var container: BoxContainer
+	if icon_placement == "right":
+		container = HBoxContainer.new()
+	else:
+		container = VBoxContainer.new()
+
+	container.set_anchors_preset(Control.PRESET_FULL_RECT)
+	container.alignment = BoxContainer.ALIGNMENT_CENTER
+	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	container.add_theme_constant_override("separation", 4)
+
+	var icon_rect := TextureRect.new()
+	icon_rect.texture = icon_texture
+	icon_rect.custom_minimum_size = Vector2(icon_display_size, icon_display_size)
+	icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon_rect.modulate = accent_color
+	icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	icon_rect.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	icon_rect.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
+	var label := Label.new()
+	label.text = original_text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var font := load(FONT_PATH) as Font
+	if font:
+		label.add_theme_font_override("font", font)
+	label.add_theme_font_size_override("font_size", label_font_size)
+	label.add_theme_color_override("font_color", Color.WHITE)
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	label.add_theme_constant_override("outline_size", 12)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
+	if icon_placement == "right":
+		container.add_child(label)
+		container.add_child(icon_rect)
+	else:
+		container.add_child(icon_rect)
+		container.add_child(label)
+
+	add_child(container)
 
 
 func _make_style(bg: Color, border: Color, bw: int) -> StyleBoxFlat:
