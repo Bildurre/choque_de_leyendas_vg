@@ -8,7 +8,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
 bg_color = Color(0.0, 0.0, 0.0, 0.0)
 content_margin_left = 16.0
-content_margin_top = 20.0
+content_margin_top = 8.0
 content_margin_right = 12.0
 content_margin_bottom = 6.0
 
@@ -50,10 +50,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 custom_minimum_size = Vector2(24, 24)
-tooltip_text = "Atrás"
 texture_normal = ExtResource("4_back")
 stretch_mode = 5
-mouse_default_cursor_shape = 2
 modulate = Color(1, 1, 1, 0.7)
 visible = false
 
@@ -80,13 +78,25 @@ text = "Jugador#1234"
 [node name="XPBar" type="ProgressBar" parent="HBox/ProfileArea/UserInfo"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(126, 10)
+custom_minimum_size = Vector2(126, 16)
 max_value = 120.0
 value = 46.0
 show_percentage = false
-tooltip_text = "46 / 120 XP"
 theme_override_styles/fill = SubResource("StyleBoxFlat_xpfill")
 theme_override_styles/background = SubResource("StyleBoxFlat_xpbg")
+
+[node name="XPLabel" type="Label" parent="HBox/ProfileArea/UserInfo/XPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+text = "46 / 120"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ProfileButton" type="Control" parent="HBox/ProfileArea"]
 layout_mode = 2

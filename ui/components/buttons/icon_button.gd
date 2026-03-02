@@ -19,6 +19,15 @@ extends Button
 ## Radio de esquinas personalizado (-1 = circular, usa diametro/2).
 @export var corner_radius_override: int = -1
 
+## Mostrar texto debajo del icono (layout vertical).
+@export var show_label: bool = false
+
+## Texto a mostrar debajo del icono.
+@export var label_text: String = ""
+
+## Tamanio de fuente del texto.
+@export var label_font_size: int = 10
+
 var _normal_style: StyleBoxFlat
 var _hover_style: StyleBoxFlat
 var _pressed_style: StyleBoxFlat
@@ -36,6 +45,9 @@ func _ready() -> void:
 	text = ""
 
 	_setup_styles()
+
+	if show_label and label_text != "":
+		_setup_label_layout()
 
 
 func _setup_styles() -> void:
@@ -66,6 +78,40 @@ func _setup_styles() -> void:
 
 	# Cursor de mano
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+
+func _setup_label_layout() -> void:
+	var stored_icon := icon
+	icon = null
+
+	var vbox := VBoxContainer.new()
+	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
+	var margin := int(icon_padding)
+	vbox.offset_left = margin
+	vbox.offset_top = margin
+	vbox.offset_right = -margin
+	vbox.offset_bottom = -margin
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_theme_constant_override("separation", 2)
+
+	var icon_rect := TextureRect.new()
+	icon_rect.texture = stored_icon
+	icon_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(icon_rect)
+
+	var lbl := Label.new()
+	lbl.text = label_text
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.add_theme_font_size_override("font_size", label_font_size)
+	lbl.add_theme_color_override("font_color", Color.WHITE)
+	lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(lbl)
+
+	add_child(vbox)
 
 
 func _create_base_style(bg: Color, radius: int, pad: int) -> StyleBoxFlat:
