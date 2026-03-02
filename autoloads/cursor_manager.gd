@@ -40,9 +40,6 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(_empty_cursor, Input.CURSOR_ARROW, Vector2.ZERO)
 	Input.set_custom_mouse_cursor(_empty_cursor, Input.CURSOR_POINTING_HAND, Vector2.ZERO)
 
-	# Suprimir el tooltip nativo de Godot (delay infinito).
-	ProjectSettings.set_setting("gui/timers/tooltip_delay_sec", 9999.0)
-
 	# Crear cursor por software en capa alta.
 	_canvas_layer = CanvasLayer.new()
 	_canvas_layer.layer = 100
@@ -163,13 +160,22 @@ func _position_tooltip(mouse_pos: Vector2) -> void:
 	_tooltip_panel.position = Vector2(x, y)
 
 
-## Devuelve el tooltip_text del control o de su ancestro más cercano.
+## Devuelve el texto tooltip del control o un ancestro, "robándolo"
+## de tooltip_text para que Godot no muestre su tooltip nativo.
+## El texto se guarda en la meta &"_tt" del control original.
 func _get_tooltip_text(control: Control) -> String:
 	if control == null:
 		return ""
 	var current := control
 	while current:
+		# ¿Ya lo robamos antes?
+		if current.has_meta(&"_tt"):
+			return current.get_meta(&"_tt") as String
+		# ¿Tiene tooltip_text? → robarlo.
 		if current.tooltip_text != "":
-			return current.tooltip_text
+			var text := current.tooltip_text
+			current.set_meta(&"_tt", text)
+			current.tooltip_text = ""
+			return text
 		current = current.get_parent() as Control
 	return ""
