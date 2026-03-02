@@ -6,6 +6,7 @@ extends CanvasLayer
 
 const BLUR_SHADER_PATH := "res://ui/shaders/blur_overlay.gdshader"
 const GAME_SETTINGS_SCENE := "res://screens/settings/game_settings/game_settings_desktop.tscn"
+const GRAPHICS_SETTINGS_SCENE := "res://screens/settings/graphics_settings/graphics_settings_desktop.tscn"
 const FADE_DURATION := 0.25
 const BUTTON_SEPARATION := 12
 
@@ -111,12 +112,14 @@ func _on_button_pressed(key: String) -> void:
 			print("[SettingsModal] Switch pressed")
 		"MODAL_GAME":
 			get_tree().change_scene_to_file(GAME_SETTINGS_SCENE)
+		"MODAL_GRAPHICS":
+			get_tree().change_scene_to_file(GRAPHICS_SETTINGS_SCENE)
 		"MODAL_BACK":
 			_close()
 		"MODAL_EXIT":
 			get_tree().quit()
 		_:
-			print("[SettingsModal] %s pressed" % key)
+			pass
 
 
 func _on_backdrop_input(event: InputEvent) -> void:

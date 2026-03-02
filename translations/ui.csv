@@ -20,3 +20,10 @@ MODAL_GRAPHICS,Gráficos,Graphics
 MODAL_AUDIO,Audio,Audio
 MODAL_BACK,Volver,Back
 MODAL_EXIT,Salir,Exit
+GRAPHICS_TITLE,Opciones de Gráficos,Graphics Settings
+GRAPHICS_DISPLAY,Pantalla,Display
+GRAPHICS_RESOLUTION,Resolución,Resolution
+GRAPHICS_CONFIRM_TITLE,¿Mantener resolución?,Keep resolution?
+GRAPHICS_CONFIRM_MSG,Revirtiendo en %d s…,Reverting in %d s…
+GRAPHICS_KEEP,Mantener,Keep
+GRAPHICS_REVERT,Revertir,Revert
