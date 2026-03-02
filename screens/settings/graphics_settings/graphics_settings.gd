@@ -4,8 +4,8 @@ extends Control
 
 const HOME_SCENE := "res://screens/home/home_desktop.tscn"
 
-## Resoluciones disponibles (ancho × alto).
-const RESOLUTIONS: Array[Vector2i] = [
+## Catálogo de resoluciones (se filtra según la pantalla nativa).
+const _ALL_RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1280, 720),
 	Vector2i(1366, 768),
 	Vector2i(1600, 900),
@@ -13,6 +13,9 @@ const RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(2560, 1440),
 	Vector2i(3840, 2160),
 ]
+
+## Resoluciones válidas para esta pantalla (se llena en _ready).
+var _resolutions: Array[Vector2i] = []
 
 ## Segundos para confirmar antes de revertir.
 const CONFIRM_TIMEOUT := 10
@@ -53,11 +56,25 @@ func _on_back_pressed() -> void:
 func _populate_resolutions() -> void:
 	var btn := %ResolutionSelector as OptionButton
 	btn.clear()
-	var current_size := DisplayServer.window_get_size()
-	var selected_idx := 0
 
-	for i in RESOLUTIONS.size():
-		var res := RESOLUTIONS[i]
+	# Resolución nativa de la pantalla.
+	var native := DisplayServer.screen_get_size()
+	var current_size := get_window().size
+
+	# Filtrar resoluciones que caben en la pantalla nativa.
+	_resolutions = []
+	for res in _ALL_RESOLUTIONS:
+		if res.x <= native.x and res.y <= native.y:
+			_resolutions.append(res)
+
+	# Añadir la nativa si no está ya en la lista.
+	if not _resolutions.has(native):
+		_resolutions.append(native)
+		_resolutions.sort_custom(func(a: Vector2i, b: Vector2i) -> bool: return a.x < b.x)
+
+	var selected_idx := 0
+	for i in _resolutions.size():
+		var res := _resolutions[i]
 		btn.add_item("%d × %d" % [res.x, res.y], i)
 		if res == current_size:
 			selected_idx = i
@@ -71,7 +88,7 @@ func _on_resolution_selected(index: int) -> void:
 	if index == _previous_index:
 		return
 
-	var res := RESOLUTIONS[index]
+	var res := _resolutions[index]
 	_apply_resolution(res)
 	_show_confirm_dialog(index)
 

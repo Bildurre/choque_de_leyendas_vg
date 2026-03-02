@@ -34,6 +34,9 @@ var _tooltip_visible := false
 
 
 func _ready() -> void:
+	# Ventana maximizada por defecto (resolución nativa de la pantalla).
+	get_window().mode = Window.MODE_MAXIMIZED
+
 	# Cursor OS invisible (1x1 transparente) — el visible es por software.
 	var empty := Image.create(1, 1, false, Image.FORMAT_RGBA8)
 	_empty_cursor = ImageTexture.create_from_image(empty)
