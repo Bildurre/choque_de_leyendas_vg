@@ -48,7 +48,8 @@ func _process(delta: float) -> void:
 	# --- Tooltip: ocultar cursor mientras el tooltip es visible ---
 	if not _popup_open:
 		var hovered := get_viewport().gui_get_hovered_control()
-		var has_tooltip := hovered != null and _control_has_tooltip(hovered)
+		var on_tooltip_panel := _is_on_tooltip_panel(hovered)
+		var has_tooltip := not on_tooltip_panel and hovered != null and _control_has_tooltip(hovered)
 
 		if has_tooltip:
 			if hovered != _tooltip_control:
@@ -61,6 +62,9 @@ func _process(delta: float) -> void:
 			if _tooltip_hover_time >= delay and not _tooltip_showing:
 				_tooltip_showing = true
 				_cursor_sprite.visible = false
+		elif _tooltip_showing and on_tooltip_panel:
+			# El ratón está sobre el propio panel del tooltip — mantener cursor oculto.
+			pass
 		else:
 			if _tooltip_showing:
 				_tooltip_showing = false
@@ -89,6 +93,18 @@ func _process(delta: float) -> void:
 			_cursor_sprite.texture = CURSOR_POINTER
 		else:
 			_cursor_sprite.texture = CURSOR_DEFAULT
+
+
+## Comprueba si el control (o un ancestro) pertenece al TooltipPanel interno de Godot.
+func _is_on_tooltip_panel(control: Control) -> bool:
+	if control == null:
+		return false
+	var node: Node = control
+	while node != null:
+		if node.is_class("TooltipPanel"):
+			return true
+		node = node.get_parent()
+	return false
 
 
 ## Comprueba si un control (o alguno de sus ancestros) tiene tooltip.
