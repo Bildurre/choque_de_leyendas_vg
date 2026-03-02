@@ -38,6 +38,7 @@ func _activate_mobile() -> void:
 		win.mode = Window.MODE_WINDOWED
 	win.size = MOBILE_WINDOW
 	var screen_size := DisplayServer.screen_get_size()
+	@warning_ignore("integer_division")
 	win.position = (screen_size - MOBILE_WINDOW) / 2
 	get_tree().change_scene_to_file(HOME_MOBILE)
 

@@ -16,6 +16,9 @@ extends Button
 ## Radio de las esquinas redondeadas.
 @export var corner_radius: int = 12
 
+## Tamanio de fuente del label.
+@export var label_font_size: int = 48
+
 const ASPECT_RATIO := 5.0 / 7.0
 const FONT_PATH := "res://assets/fonts/imfellenglish/IMFellEnglish-Regular.ttf"
 const SHADER_PATH := "res://ui/shaders/grayscale_tint.gdshader"
@@ -34,7 +37,7 @@ func _ready() -> void:
 	var font := load(FONT_PATH) as Font
 	if font:
 		add_theme_font_override("font", font)
-	add_theme_font_size_override("font_size", 48)
+	add_theme_font_size_override("font_size", label_font_size)
 	add_theme_color_override("font_color", Color.WHITE)
 	add_theme_color_override("font_hover_color", Color.WHITE)
 	add_theme_color_override("font_pressed_color", Color.WHITE)
@@ -75,8 +78,8 @@ func _setup_background() -> void:
 
 	_bg = TextureRect.new()
 	_bg.texture = background_texture
-	_bg.expand_mode = 1  # IGNORE_SIZE
-	_bg.stretch_mode = 6  # KEEP_ASPECT_COVERED
+	_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_bg.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_bg.material = _shader_mat
 	_bg.show_behind_parent = true
