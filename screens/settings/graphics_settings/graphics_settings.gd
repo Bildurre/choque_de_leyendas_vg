@@ -77,11 +77,14 @@ func _on_resolution_selected(index: int) -> void:
 
 
 func _apply_resolution(res: Vector2i) -> void:
-	DisplayServer.window_set_size(res)
+	var win := get_window()
+	# Forzar modo ventana (no maximizado/fullscreen) para poder redimensionar.
+	if win.mode != Window.MODE_WINDOWED:
+		win.mode = Window.MODE_WINDOWED
+	win.size = res
 	# Centrar la ventana en la pantalla.
 	var screen_size := DisplayServer.screen_get_size()
-	var pos := (screen_size - res) / 2
-	DisplayServer.window_set_position(pos)
+	win.position = (screen_size - res) / 2
 
 
 # ── Dialogo de confirmación ───────────────────────────────────────────────────
