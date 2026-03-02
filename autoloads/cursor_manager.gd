@@ -71,7 +71,7 @@ func _process(_delta: float) -> void:
 func _adjust_tooltip(mouse_pos: Vector2) -> void:
 	var vp := get_viewport()
 	var vp_size := vp.get_visible_rect().size
-	var cursor_h := _cursor_sprite.texture.get_height() if _cursor_sprite.texture else 52.0
+	var cursor_h: float = float(_cursor_sprite.texture.get_height()) if _cursor_sprite.texture else 52.0
 
 	for child in vp.get_children(true):
 		if not (child is Control and child.visible):
@@ -80,11 +80,11 @@ func _adjust_tooltip(mouse_pos: Vector2) -> void:
 			continue
 
 		var tp := child as Control
-		var tp_h := tp.size.y
+		var tp_h: float = tp.size.y
 
 		# Tooltip debajo del cursor → empujar más abajo.
 		if tp.position.y >= mouse_pos.y:
-			var desired_y := mouse_pos.y + cursor_h
+			var desired_y: float = mouse_pos.y + cursor_h
 			if desired_y + tp_h <= vp_size.y:
 				tp.position.y = desired_y
 			else:
