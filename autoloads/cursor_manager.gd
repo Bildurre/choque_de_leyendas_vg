@@ -37,7 +37,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	_cursor_sprite.position = get_viewport().get_mouse_position() - HOTSPOT
+	var mouse_pos := get_viewport().get_mouse_position()
+	_cursor_sprite.position = mouse_pos - HOTSPOT
+
+	# Reposicionar tooltip para que no solape con el cursor espada.
+	_adjust_tooltip(mouse_pos)
 
 	# Detectar popups (sub-windows embebidas) para cambiar a cursor hardware.
 	var has_popup := get_viewport().get_embedded_subwindows().size() > 0
@@ -59,3 +63,35 @@ func _process(_delta: float) -> void:
 			_cursor_sprite.texture = CURSOR_POINTER
 		else:
 			_cursor_sprite.texture = CURSOR_DEFAULT
+
+
+## Busca el TooltipPanel interno de Godot y lo reposiciona para que
+## no solape con el cursor software. Si aparece abajo, lo empuja debajo
+## del cursor; si se sale de pantalla, lo sube por encima.
+func _adjust_tooltip(mouse_pos: Vector2) -> void:
+	var vp := get_viewport()
+	var vp_size := vp.get_visible_rect().size
+	var cursor_h := _cursor_sprite.texture.get_height() if _cursor_sprite.texture else 52.0
+
+	for child in vp.get_children(true):
+		if not (child is Control and child.visible):
+			continue
+		if not child.is_class("TooltipPanel"):
+			continue
+
+		var tp := child as Control
+		var tp_h := tp.size.y
+
+		# Tooltip debajo del cursor → empujar más abajo.
+		if tp.position.y >= mouse_pos.y:
+			var desired_y := mouse_pos.y + cursor_h
+			if desired_y + tp_h <= vp_size.y:
+				tp.position.y = desired_y
+			else:
+				# No cabe debajo → mover arriba del cursor.
+				tp.position.y = mouse_pos.y - tp_h - 4.0
+		else:
+			# Tooltip arriba del cursor — asegurar que no se sale por arriba.
+			if tp.position.y < 0.0:
+				tp.position.y = mouse_pos.y + cursor_h
+		break
