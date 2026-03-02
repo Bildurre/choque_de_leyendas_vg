@@ -11,6 +11,7 @@ var _tween: Tween
 
 func _ready() -> void:
 	stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	ignore_texture_size = true
 	custom_minimum_size = Vector2(icon_size, icon_size)
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
