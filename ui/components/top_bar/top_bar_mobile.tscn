@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://ui/components/top_bar/top_bar.gd" id="1_tb"]
+[ext_resource type="Script" path="res://ui/components/top_bar/hex_profile_button.gd" id="2_hex"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/user.svg" id="3_user"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/arrow_big_left_dash.svg" id="4_back"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.0, 0.0, 0.0, 0.0)
+content_margin_left = 16.0
+content_margin_top = 20.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpfill"]
+bg_color = Color(0.478, 0.392, 0.784, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbg"]
+bg_color = Color(0.35, 0.35, 0.35, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvlbadge"]
+bg_color = Color(0.478, 0.392, 0.784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+
+[node name="TopBar" type="PanelContainer"]
+layout_mode = 2
+script = ExtResource("1_tb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="BackArrow" type="TextureButton" parent="HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(24, 24)
+tooltip_text = "Atrás"
+texture_normal = ExtResource("4_back")
+stretch_mode = 5
+mouse_default_cursor_shape = 2
+modulate = Color(1, 1, 1, 0.7)
+visible = false
+
+[node name="Spacer" type="Control" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProfileArea" type="HBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="UserInfo" type="VBoxContainer" parent="HBox/ProfileArea"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 3
+
+[node name="Username" type="Label" parent="HBox/ProfileArea/UserInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Jugador#1234"
+
+[node name="XPBar" type="ProgressBar" parent="HBox/ProfileArea/UserInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(126, 10)
+max_value = 120.0
+value = 46.0
+show_percentage = false
+tooltip_text = "46 / 120 XP"
+theme_override_styles/fill = SubResource("StyleBoxFlat_xpfill")
+theme_override_styles/background = SubResource("StyleBoxFlat_xpbg")
+
+[node name="ProfileButton" type="Control" parent="HBox/ProfileArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(48, 48)
+size_flags_vertical = 4
+script = ExtResource("2_hex")
+
+[node name="UserIcon" type="TextureRect" parent="HBox/ProfileArea/ProfileButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_user")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LevelBadge" type="PanelContainer" parent="HBox/ProfileArea/ProfileButton"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 32.0
+offset_right = 52.0
+offset_bottom = 48.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvlbadge")
+
+[node name="LevelLabel" type="Label" parent="HBox/ProfileArea/ProfileButton/LevelBadge"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1

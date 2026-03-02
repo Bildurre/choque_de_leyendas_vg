@@ -13,6 +13,12 @@ extends Button
 ## Padding interior entre el borde del boton y el icono.
 @export var icon_padding: float = 24.0
 
+## Expandir horizontalmente (true = rectangular, solo fija altura).
+@export var stretch_horizontal: bool = false
+
+## Radio de esquinas personalizado (-1 = circular, usa diametro/2).
+@export var corner_radius_override: int = -1
+
 var _normal_style: StyleBoxFlat
 var _hover_style: StyleBoxFlat
 var _pressed_style: StyleBoxFlat
@@ -23,14 +29,21 @@ func _ready() -> void:
 	expand_icon = true
 	icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
-	custom_minimum_size = Vector2(button_diameter, button_diameter)
+	if stretch_horizontal:
+		custom_minimum_size = Vector2(0, button_diameter)
+	else:
+		custom_minimum_size = Vector2(button_diameter, button_diameter)
 	text = ""
 
 	_setup_styles()
 
 
 func _setup_styles() -> void:
-	var radius := int(button_diameter / 2.0)
+	var radius: int
+	if corner_radius_override >= 0:
+		radius = corner_radius_override
+	else:
+		radius = int(button_diameter / 2.0)
 	var pad := int(icon_padding)
 
 	# Estado normal: fondo gris oscuro

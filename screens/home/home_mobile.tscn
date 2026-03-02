@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://screens/home/home.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_desktop.tscn" id="2_topbar"]
+[ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_mobile.tscn" id="2_topbar"]
 [ext_resource type="Script" path="res://ui/components/bottom_bar/bottom_bar.gd" id="3_bb"]
 [ext_resource type="Script" path="res://ui/components/buttons/settings_button.gd" id="4_sb"]
 [ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="5_ib"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="15_play_img"]
 [ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="16_decks_img"]
 [ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="17_settings"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/coins.svg" id="18_coins"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/gem.svg" id="19_gem"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
 shader = ExtResource("13_oshader")
@@ -29,6 +31,17 @@ content_margin_left = 16.0
 content_margin_top = 8.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_currbox"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -147,6 +160,62 @@ background_texture = ExtResource("16_decks_img")
 label_font_size = 18
 keep_aspect_ratio = false
 
+[node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ShopButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "HOME_SHOP"
+icon = ExtResource("6_store")
+script = ExtResource("5_ib")
+hover_color = Color(0.478, 0.392, 0.784, 1)
+button_diameter = 42.0
+icon_padding = 8.0
+stretch_horizontal = true
+corner_radius_override = 10
+
+[node name="MissionsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "HOME_MISSIONS"
+icon = ExtResource("7_scroll")
+script = ExtResource("5_ib")
+hover_color = Color(0.478, 0.392, 0.784, 1)
+button_diameter = 42.0
+icon_padding = 8.0
+stretch_horizontal = true
+corner_radius_override = 10
+
+[node name="SocialButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "HOME_SOCIAL"
+icon = ExtResource("8_msg")
+script = ExtResource("5_ib")
+hover_color = Color(0.478, 0.392, 0.784, 1)
+button_diameter = 42.0
+icon_padding = 8.0
+stretch_horizontal = true
+corner_radius_override = 10
+
+[node name="FriendsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "HOME_FRIENDS"
+icon = ExtResource("9_users")
+script = ExtResource("5_ib")
+hover_color = Color(0.478, 0.392, 0.784, 1)
+button_diameter = 42.0
+icon_padding = 8.0
+stretch_horizontal = true
+corner_radius_override = 10
+
 [node name="BottomBar" type="PanelContainer" parent="Layout"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -155,8 +224,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bottombar")
 
 [node name="Content" type="HBoxContainer" parent="Layout/BottomBar"]
 layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 8
 
 [node name="SettingsButton" type="TextureButton" parent="Layout/BottomBar/Content"]
 unique_name_in_owner = true
@@ -165,44 +232,61 @@ tooltip_text = "HOME_SETTINGS"
 texture_normal = ExtResource("17_settings")
 stretch_mode = 5
 script = ExtResource("4_sb")
-icon_size = 28.0
+icon_size = 21.0
 
-[node name="ShopButton" type="Button" parent="Layout/BottomBar/Content"]
+[node name="Spacer" type="Control" parent="Layout/BottomBar/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Currencies" type="HBoxContainer" parent="Layout/BottomBar/Content"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="CoinBox" type="PanelContainer" parent="Layout/BottomBar/Content/Currencies"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
+
+[node name="CoinsContainer" type="HBoxContainer" parent="Layout/BottomBar/Content/Currencies/CoinBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CoinIcon" type="TextureRect" parent="Layout/BottomBar/Content/Currencies/CoinBox/CoinsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(22, 22)
+size_flags_vertical = 4
+texture = ExtResource("18_coins")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.94, 0.76, 0.22, 1)
+
+[node name="CoinAmount" type="Label" parent="Layout/BottomBar/Content/Currencies/CoinBox/CoinsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "HOME_SHOP"
-icon = ExtResource("6_store")
-script = ExtResource("5_ib")
-hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 48.0
-icon_padding = 10.0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "1,250"
 
-[node name="MissionsButton" type="Button" parent="Layout/BottomBar/Content"]
+[node name="GemBox" type="PanelContainer" parent="Layout/BottomBar/Content/Currencies"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_currbox")
+
+[node name="GemsContainer" type="HBoxContainer" parent="Layout/BottomBar/Content/Currencies/GemBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="GemIcon" type="TextureRect" parent="Layout/BottomBar/Content/Currencies/GemBox/GemsContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(22, 22)
+size_flags_vertical = 4
+texture = ExtResource("19_gem")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.224, 0.6, 0.804, 1)
+
+[node name="GemAmount" type="Label" parent="Layout/BottomBar/Content/Currencies/GemBox/GemsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "HOME_MISSIONS"
-icon = ExtResource("7_scroll")
-script = ExtResource("5_ib")
-hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 48.0
-icon_padding = 10.0
-
-[node name="SocialButton" type="Button" parent="Layout/BottomBar/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "HOME_SOCIAL"
-icon = ExtResource("8_msg")
-script = ExtResource("5_ib")
-hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 48.0
-icon_padding = 10.0
-
-[node name="FriendsButton" type="Button" parent="Layout/BottomBar/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "HOME_FRIENDS"
-icon = ExtResource("9_users")
-script = ExtResource("5_ib")
-hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 48.0
-icon_padding = 10.0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "85"
