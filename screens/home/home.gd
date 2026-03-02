@@ -23,8 +23,11 @@ func _notification(what: int) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") and not %BottomBar.has_modal_open():
-		%BottomBar.open_settings()
+	var bottom_bar := get_node_or_null("%BottomBar")
+	if not bottom_bar:
+		return
+	if event.is_action_pressed("ui_cancel") and not bottom_bar.has_modal_open():
+		bottom_bar.open_settings()
 		get_viewport().set_input_as_handled()
 
 
@@ -35,10 +38,13 @@ func _connect_button(button_name: String, callback: Callable) -> void:
 
 
 func _update_logo() -> void:
+	var logo := get_node_or_null("%Logo") as TextureRect
+	if not logo:
+		return
 	var locale := TranslationServer.get_locale()
 	var tex := load(LOGO_PATH % locale)
 	if tex:
-		%Logo.texture = tex
+		logo.texture = tex
 
 
 func _on_collection_pressed() -> void:
