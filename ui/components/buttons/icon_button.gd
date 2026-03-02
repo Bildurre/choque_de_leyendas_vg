@@ -93,7 +93,7 @@ func _setup_label_layout() -> void:
 	vbox.offset_bottom = -margin
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	vbox.add_theme_constant_override("separation", 2)
+	vbox.add_theme_constant_override("separation", 4)
 
 	var icon_rect := TextureRect.new()
 	icon_rect.texture = stored_icon
