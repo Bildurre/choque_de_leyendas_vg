@@ -222,7 +222,7 @@ func _on_countdown_tick() -> void:
 
 func _on_keep_pressed() -> void:
 	_previous_index = %ResolutionSelector.selected
-	_previous_size = RESOLUTIONS[_previous_index]
+	_previous_size = _resolutions[_previous_index]
 	_close_confirm_dialog()
 
 
