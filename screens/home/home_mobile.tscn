@@ -300,7 +300,8 @@ layout_mode = 2
 [node name="SettingsButton" type="TextureButton" parent="Layout/BottomBar/Content"]
 unique_name_in_owner = true
 layout_mode = 2
+ignore_texture_size = true
 texture_normal = ExtResource("17_settings")
 stretch_mode = 5
 script = ExtResource("4_sb")
-icon_size = 10.0
+icon_size = 46.0
