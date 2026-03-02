@@ -22,6 +22,7 @@ config/features=PackedStringArray("4.6")
 
 TranslationLoader="*res://autoloads/translation_loader.gd"
 CursorManager="*res://autoloads/cursor_manager.gd"
+DisplayMode="*res://autoloads/display_mode.gd"
 
 [display]
 

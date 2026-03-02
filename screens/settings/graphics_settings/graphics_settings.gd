@@ -2,8 +2,6 @@
 ## Permite cambiar la resolución de la ventana con confirmación temporal.
 extends Control
 
-const HOME_SCENE := "res://screens/home/home_desktop.tscn"
-
 ## Catálogo de resoluciones (se filtra según la pantalla nativa).
 const _ALL_RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1280, 720),
@@ -48,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file(HOME_SCENE)
+	get_tree().change_scene_to_file(DisplayMode.get_home_scene())
 
 
 # ── Resolución ────────────────────────────────────────────────────────────────

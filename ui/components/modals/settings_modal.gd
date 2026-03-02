@@ -109,7 +109,7 @@ func _build_ui() -> void:
 func _on_button_pressed(key: String) -> void:
 	match key:
 		"MODAL_SWITCH":
-			print("[SettingsModal] Switch pressed")
+			DisplayMode.switch_mode()
 		"MODAL_GAME":
 			get_tree().change_scene_to_file(GAME_SETTINGS_SCENE)
 		"MODAL_GRAPHICS":

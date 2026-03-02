@@ -2,7 +2,6 @@
 ## Muestra opciones de configuracion del juego en formato tabla.
 extends Control
 
-const HOME_SCENE := "res://screens/home/home_desktop.tscn"
 
 var _chevron: TextureRect
 
@@ -22,7 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file(HOME_SCENE)
+	get_tree().change_scene_to_file(DisplayMode.get_home_scene())
 
 
 func _sync_language_selector() -> void:
