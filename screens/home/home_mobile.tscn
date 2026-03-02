@@ -1,25 +1,34 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://screens/home/home.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://ui/components/top_bar/top_bar_desktop.tscn" id="2_topbar"]
-[ext_resource type="PackedScene" path="res://ui/components/bottom_bar/bottom_bar_desktop.tscn" id="3_bottombar"]
-[ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="4_ib"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/store.svg" id="5_store"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/scroll_text.svg" id="6_scroll"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/messages_square.svg" id="7_msg"]
-[ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="8_users"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/home.jpeg" id="9_bg"]
-[ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="10_mcb"]
-[ext_resource type="Texture2D" path="res://assets/logos/es/logo_full_light.svg" id="11_logo"]
-[ext_resource type="Shader" path="res://ui/shaders/outline.gdshader" id="12_oshader"]
-[ext_resource type="Texture2D" path="res://assets/images/cards/collection.jpeg" id="13_col_img"]
-[ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="14_play_img"]
-[ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="15_decks_img"]
+[ext_resource type="Script" path="res://ui/components/bottom_bar/bottom_bar.gd" id="3_bb"]
+[ext_resource type="Script" path="res://ui/components/buttons/settings_button.gd" id="4_sb"]
+[ext_resource type="Script" path="res://ui/components/buttons/icon_button.gd" id="5_ib"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/store.svg" id="6_store"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/scroll_text.svg" id="7_scroll"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/messages_square.svg" id="8_msg"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/users.svg" id="9_users"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/home.jpeg" id="10_bg"]
+[ext_resource type="Script" path="res://ui/components/buttons/menu_card_button.gd" id="11_mcb"]
+[ext_resource type="Texture2D" path="res://assets/logos/es/logo_full_light.svg" id="12_logo"]
+[ext_resource type="Shader" path="res://ui/shaders/outline.gdshader" id="13_oshader"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/collection.jpeg" id="14_col_img"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/play.jpeg" id="15_play_img"]
+[ext_resource type="Texture2D" path="res://assets/images/cards/decks.jpeg" id="16_decks_img"]
+[ext_resource type="Texture2D" path="res://assets/icons/placeholder/settings.svg" id="17_settings"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
-shader = ExtResource("12_oshader")
+shader = ExtResource("13_oshader")
 shader_parameter/outline_color = Color(0.05, 0.05, 0.1, 0.9)
 shader_parameter/outline_width = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottombar"]
+bg_color = Color(0.0, 0.0, 0.0, 0.0)
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -46,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_bg")
+texture = ExtResource("10_bg")
 expand_mode = 1
 stretch_mode = 6
 modulate = Color(0.3, 0.3, 0.3, 0.15)
@@ -72,12 +81,12 @@ theme_override_constants/margin_bottom = 12
 
 [node name="ContentColumn" type="VBoxContainer" parent="Layout/MiddleSection"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="LogoContainer" type="Control" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+size_flags_stretch_ratio = 0.2
 
 [node name="Logo" type="TextureRect" parent="Layout/MiddleSection/ContentColumn/LogoContainer"]
 unique_name_in_owner = true
@@ -87,92 +96,113 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_logo")
+texture = ExtResource("12_logo")
 expand_mode = 1
 stretch_mode = 5
 material = SubResource("ShaderMaterial_outline")
 
-[node name="CardRow" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
+[node name="CardSection" type="VBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.7
-alignment = 1
+size_flags_stretch_ratio = 0.8
 theme_override_constants/separation = 8
 
-[node name="CollectionButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-text = "HOME_COLLECTION"
-script = ExtResource("10_mcb")
-accent_color = Color(0.161, 0.671, 0.373, 1)
-background_texture = ExtResource("13_col_img")
-label_font_size = 20
-
-[node name="PlayButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
+[node name="PlayButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardSection"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "HOME_PLAY"
-script = ExtResource("10_mcb")
+script = ExtResource("11_mcb")
 accent_color = Color(0.945, 0.349, 0.349, 1)
-background_texture = ExtResource("14_play_img")
-label_font_size = 20
+background_texture = ExtResource("15_play_img")
+label_font_size = 24
+keep_aspect_ratio = false
 
-[node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardRow"]
-unique_name_in_owner = true
+[node name="SecondRow" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn/CardSection"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "HOME_DECKS"
-script = ExtResource("10_mcb")
-accent_color = Color(0.251, 0.549, 0.992, 1)
-background_texture = ExtResource("15_decks_img")
-label_font_size = 20
+theme_override_constants/separation = 8
 
-[node name="NavBar" type="HBoxContainer" parent="Layout/MiddleSection/ContentColumn"]
+[node name="CollectionButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardSection/SecondRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "HOME_COLLECTION"
+script = ExtResource("11_mcb")
+accent_color = Color(0.161, 0.671, 0.373, 1)
+background_texture = ExtResource("14_col_img")
+label_font_size = 18
+keep_aspect_ratio = false
+
+[node name="DecksButton" type="Button" parent="Layout/MiddleSection/ContentColumn/CardSection/SecondRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "HOME_DECKS"
+script = ExtResource("11_mcb")
+accent_color = Color(0.251, 0.549, 0.992, 1)
+background_texture = ExtResource("16_decks_img")
+label_font_size = 18
+keep_aspect_ratio = false
+
+[node name="BottomBar" type="PanelContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_bb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottombar")
+
+[node name="Content" type="HBoxContainer" parent="Layout/BottomBar"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
-[node name="ShopButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+[node name="SettingsButton" type="TextureButton" parent="Layout/BottomBar/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "HOME_SETTINGS"
+texture_normal = ExtResource("17_settings")
+stretch_mode = 5
+script = ExtResource("4_sb")
+icon_size = 28.0
+
+[node name="ShopButton" type="Button" parent="Layout/BottomBar/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "HOME_SHOP"
-icon = ExtResource("5_store")
-script = ExtResource("4_ib")
+icon = ExtResource("6_store")
+script = ExtResource("5_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 56.0
-icon_padding = 12.0
+button_diameter = 48.0
+icon_padding = 10.0
 
-[node name="MissionsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+[node name="MissionsButton" type="Button" parent="Layout/BottomBar/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "HOME_MISSIONS"
-icon = ExtResource("6_scroll")
-script = ExtResource("4_ib")
+icon = ExtResource("7_scroll")
+script = ExtResource("5_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 56.0
-icon_padding = 12.0
+button_diameter = 48.0
+icon_padding = 10.0
 
-[node name="SocialButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+[node name="SocialButton" type="Button" parent="Layout/BottomBar/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "HOME_SOCIAL"
-icon = ExtResource("7_msg")
-script = ExtResource("4_ib")
+icon = ExtResource("8_msg")
+script = ExtResource("5_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 56.0
-icon_padding = 12.0
+button_diameter = 48.0
+icon_padding = 10.0
 
-[node name="FriendsButton" type="Button" parent="Layout/MiddleSection/ContentColumn/NavBar"]
+[node name="FriendsButton" type="Button" parent="Layout/BottomBar/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "HOME_FRIENDS"
-icon = ExtResource("8_users")
-script = ExtResource("4_ib")
+icon = ExtResource("9_users")
+script = ExtResource("5_ib")
 hover_color = Color(0.478, 0.392, 0.784, 1)
-button_diameter = 56.0
-icon_padding = 12.0
-
-[node name="BottomBar" parent="Layout" instance=ExtResource("3_bottombar")]
-unique_name_in_owner = true
+button_diameter = 48.0
+icon_padding = 10.0

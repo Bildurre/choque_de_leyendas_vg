@@ -19,6 +19,9 @@ extends Button
 ## Tamanio de fuente del label.
 @export var label_font_size: int = 48
 
+## Mantener aspect ratio 5:7. Desactivar para layouts libres.
+@export var keep_aspect_ratio: bool = true
+
 const ASPECT_RATIO := 5.0 / 7.0
 const FONT_PATH := "res://assets/fonts/imfellenglish/IMFellEnglish-Regular.ttf"
 const SHADER_PATH := "res://ui/shaders/grayscale_tint.gdshader"
@@ -97,9 +100,10 @@ func _make_style(bg: Color, border: Color, bw: int) -> StyleBoxFlat:
 
 
 func _on_resized() -> void:
-	var target_w := size.y * ASPECT_RATIO
-	if abs(custom_minimum_size.x - target_w) > 1.0:
-		custom_minimum_size.x = target_w
+	if keep_aspect_ratio:
+		var target_w := size.y * ASPECT_RATIO
+		if abs(custom_minimum_size.x - target_w) > 1.0:
+			custom_minimum_size.x = target_w
 
 	if _shader_mat:
 		_shader_mat.set_shader_parameter("rect_size", size)
